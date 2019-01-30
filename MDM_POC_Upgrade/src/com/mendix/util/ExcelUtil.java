@@ -25,6 +25,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.mendix.tool.Constants;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ExcelUtil.
@@ -108,7 +110,7 @@ private static Map<String,String> getColumnNames(Row row){
 public static void excelWrite(String globalId)
 		throws FileNotFoundException, IOException {
 	try {
-		FileInputStream fis = new FileInputStream("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\Mendix-MDM.xlsm");
+		FileInputStream fis = new FileInputStream("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		//call the getSheet() method of Workbook and pass the Sheet Name here. 
 		//In this case I have given the sheet name as “TestData” 
@@ -127,7 +129,7 @@ public static void excelWrite(String globalId)
 		//if it is numeric, we need to set the cell type as number
 //		cell.setCellType(cell.CELL_TYPE_STRING);
 		cell.setCellValue(globalId);
-		FileOutputStream fos = new FileOutputStream("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\Mendix-MDM.xlsm");
+		FileOutputStream fos = new FileOutputStream("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX);
 		workbook.write(fos);
 		fos.close();
 	} catch (Exception e) {

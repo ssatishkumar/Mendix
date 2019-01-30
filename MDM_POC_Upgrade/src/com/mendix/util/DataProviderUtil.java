@@ -39,7 +39,7 @@ public class DataProviderUtil {
 		
 		@DataProvider(name="CreateMaterial_Fill_In_draft",parallel=false)
 		public static Iterator<Object[]> MaterialPage(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\data\\Global_Material_Data.xlsx", "YROH");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/data/Global_"+Constants.MDM_TYPE_MATERIAL+"_Data"+Constants.EXCEL_FORMAT_XLSX, "YROH");
 			return testData;
 		}
 		
@@ -51,7 +51,7 @@ public class DataProviderUtil {
 		
 		@DataProvider(name="Vendor_Create_Global_Disable_Bank_and_LocalData",parallel=false)
 		public static Iterator<Object[]> VendorPage(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\data\\Global_Vendor_Data.xlsx", "Y001");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/data/Global_"+Constants.MDM_TYPE_VENDOR+"_Data"+Constants.EXCEL_FORMAT_XLSX, "Y001");
 			return testData;
 		}
 		/**
@@ -61,25 +61,25 @@ public class DataProviderUtil {
 		 */
 		@DataProvider(name="Process_Information_Check",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPage(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\Mendix-MDM.xlsm", "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
 			return testData;
 		}
 		
 		@DataProvider(name="Process_Information_Check_Reject",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPageReject(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\Mendix-MDM.xlsm", "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
 			return testData;
 		}
 		
 		@DataProvider(name="Process_Information_Check_Reject_LDR",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPageRejectLDR(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\Mendix-MDM.xlsm", "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
 			return testData;
 		}
 		
 		@DataProvider(name="Process_Information_Check_Material_Reject",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPageRejectMaterial(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("C:\\MDM_Workspace\\MDM_POC_Upgrade\\input\\Mendix-MDM.xlsm", "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
 			return testData;
 		}
 		
