@@ -3,6 +3,7 @@ package com.mendix.util;
 import java.util.Iterator;
 
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import com.mendix.util.*;
 import com.mendix.tool.Constants;
@@ -23,7 +24,8 @@ public class DataProviderUtil {
 		 *
 		 * @return the iterator
 		 */
-		@DataProvider(name="HeiPort_Login",parallel=false)
+//		@DataProvider(name="HeiPort_Login",parallel=false)
+		@Test
 		public static Iterator<Object[]> HeiPort_Login(){
 			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-"+Constants.ENV+Constants.EXCEL_FORMAT, "MaterialPage");
 			return testData;
@@ -61,25 +63,25 @@ public class DataProviderUtil {
 		 */
 		@DataProvider(name="Process_Information_Check",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPage(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT, "MaterialPage");
 			return testData;
 		}
 		
 		@DataProvider(name="Process_Information_Check_Reject",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPageReject(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT, "MaterialPage");
 			return testData;
 		}
 		
 		@DataProvider(name="Process_Information_Check_Reject_LDR",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPageRejectLDR(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT, "MaterialPage");
 			return testData;
 		}
 		
 		@DataProvider(name="Process_Information_Check_Material_Reject",parallel=false)
 		public static Iterator<Object[]> ProcessInfoPageRejectMaterial(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT_XLSX, "MaterialPage");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/Mendix-MDM"+Constants.EXCEL_FORMAT, "MaterialPage");
 			return testData;
 		}
 		

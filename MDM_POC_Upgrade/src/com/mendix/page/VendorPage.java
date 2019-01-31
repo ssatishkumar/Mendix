@@ -37,6 +37,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 import com.mendix.tool.Button;
 import com.mendix.tool.Constants;
 import com.mendix.tool.SharedDriver;
@@ -189,7 +190,10 @@ public class VendorPage {
 
 	@FindBy(how=How.XPATH, using="//*[text()='Created On']/../../td[4]/div/div/div/input")
 	WebElement txtboxCreateOnEnter;
-
+	
+	@FindBy(how=How.XPATH, using="//*[text()='Created On']/../../../tr[4]/td[4]/div/div/div/input")
+	WebElement txtboxCreateOnEnterSecond;
+	
 	@FindBy(how=How.XPATH, using="//button[text()='Get Full Material Data']")
 	WebElement btnFullMaterailData;
 	
@@ -205,7 +209,30 @@ public class VendorPage {
 	
 	@FindBy(how=How.XPATH, using="//*[text()='Save']")
 	WebElement btnSave;
-
+	
+	/************************************************************************************************************/
+	/**************Extend Flow Locators**********/
+	
+	@FindBy(how=How.XPATH, using="//*[text()='Global ID']/../../td[4]/div/input")
+	WebElement txtBoxGlobalId;
+	
+	@FindBy(how=How.XPATH, using="//button[text()='Extend']")
+	WebElement btnExtend;
+	
+	@FindBy(how=How.XPATH, using="//*[text()='Global Data']")
+	WebElement btnGlobalData;
+	
+	@FindBy(how=How.XPATH, using="//button[@class='btn mx-button mx-name-actionButton1 btn-lg btn-action-panel pull-right btn-default']")
+	WebElement btnToConfirm;
+	
+	@FindBy(how=How.XPATH, using="//button[@text='Confirm Extension']")
+	WebElement btnConfirmExtension;
+	
+	@FindBy(how=How.XPATH, using="//button[text()='Flag For Deletion']")
+	WebElement btnflagForDeletion;
+	
+	@FindBy(how=How.XPATH, using="//button[@class='btn mx-button mx-name-actionButton8 btn-success']")
+	WebElement btnok;
 /**********************************************************************************************************
 	/**
 	 * Instantiates a new home page.
@@ -826,7 +853,103 @@ public class VendorPage {
 		Button.click("Click On OK button", btnOK);
 		Thread.sleep(2000);
 	}
+	public  void gobalIDSearchGlobal(String strValue) throws InterruptedException {
+		Sync.waitForSeconds(Constants.WAIT_2);
+//		WebElement elementSearch=driver.findElement(By.xpath("//*[text()='Request ID']/../../td[4]/div/input"));
+		Sync.waitForObject(driver, txtboxReqIdEnter);
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+		//get current date time with Date()
+		Date date = new Date();
+
+		// Now format the date
+		String dateFormatted= dateFormat.format(date);
+		Textbox.clear("Clear TextBox Value", txtBoxGlobalId);
+		Textbox.enterValue("Enter TextBox Value", txtBoxGlobalId, strValue);
+		Textbox.enterValue("Enter TextBox Value", txtboxCreateOnEnter, dateFormatted);
+		Button.click("Click Search button", btnReqIdEnter);
+		Sync.waitForSeconds(Constants.WAIT_2);	}
 	
+	
+	public boolean clickExtendButton() throws InterruptedException 
+	{
+
+		if(Button.verifyObject(btnExtend)){
+			Sync.waitForObject(driver ,"Extend", btnExtend);
+			Sync.waitForSeconds(Constants.WAIT_1);		
+			return Button.click("Extend", btnExtend);
+		}else{
+			return Button.click("Extend", btnExtend);
+		}
+	}
+	
+	public boolean clickGlobalDataButton() throws InterruptedException 
+	{
+		 boolean isButtonClicked=false;
+		
+		WebElement el = driver.findElement(By.cssSelector(".mx-name-tabPageGlobal"));
+	    ((JavascriptExecutor)driver).executeScript("arguments[0].click()", el);
+		/*if(Button.verifyObject(btnGlobalData)){
+			Sync.waitForObject(driver ,"Global Data", btnGlobalData);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Global Data", btnGlobalData);
+		}else{
+			return Button.click("Global Data", btnGlobalData);
+		}*/
+	    return isButtonClicked;
+	}
+	
+	public boolean clickToConfirm() throws InterruptedException 
+	{
+
+		if(Button.verifyObject(btnToConfirm)){
+			Sync.waitForObject(driver ,"Click Button To Confirm", btnToConfirm);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To Confirm", btnToConfirm);
+		}else{
+			return Button.click("Click Button To Confirm", btnToConfirm);
+		}
+	}
+	
+	public boolean clickConfirmExtension() throws InterruptedException 
+	{
+
+		if(Button.verifyObject(btnConfirmExtension)){
+			Sync.waitForObject(driver ,"Click Button To Confirm", btnConfirmExtension);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To Confirm", btnConfirmExtension);
+		}else{
+			return Button.click("Click Button To Confirm", btnConfirmExtension);
+		}
+	}
+	
+	public boolean clickflagDeletion() throws InterruptedException 
+	{
+		
+		if(Button.verifyObject(btnflagForDeletion)){
+			Sync.waitForObject(driver ,"Click Button To Delete", btnflagForDeletion);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To Delete", btnflagForDeletion);
+		}else{
+			return Button.click("Click Button To Delete", btnflagForDeletion);
+		}
+	}
+	public boolean clickOk() throws InterruptedException 
+	{
+
+		if(Button.verifyObject(btnok)){
+			Sync.waitForObject(driver ,"Click Button To ok", btnok);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To ok", btnok);
+		}else{
+			return Button.click("Click Button To ok", btnok);
+		}
+	}
 	
 	}
+	
+	
+
+
 

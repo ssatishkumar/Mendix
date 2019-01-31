@@ -220,11 +220,36 @@ public class VendorScript {
 		SharedDriver.pageContainer.vendorPage.AddresIndustryKey("Y001, Trade/Serv/Transport");
 		SharedDriver.pageContainer.vendorPage.AddresCorporateGroup("PR-RAW, PR-Raw Materials");
 		SharedDriver.pageContainer.vendorPage.BtnLocalActions();
-		SharedDriver.pageContainer.vendorPage.validateTestCreate();
-		
+		SharedDriver.pageContainer.vendorPage.validateTestCreate();		
 		SharedDriver.pageContainer.vendorPage.submitGlobalRequestTest();
 		SharedDriver.pageContainer.vendorPage.getRequestId();
 				
 	}
+	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
+	public void Vendor_Extend_Dashboard_Check(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	{
+	SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();
+	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
+	SharedDriver.pageContainer.vendorPage.advancedSearch();
+	SharedDriver.pageContainer.vendorPage.gobalIDSearchGlobal(dataMap.get("GlobalId"));
+	SharedDriver.pageContainer.vendorPage.GetFullVendorData();
+	SharedDriver.pageContainer.vendorPage.clickExtendButton();
+	SharedDriver.pageContainer.vendorPage.clickGlobalDataButton();
+	SharedDriver.pageContainer.vendorPage.clickToConfirm();
+	SharedDriver.pageContainer.vendorPage.clickConfirmExtension();
+	}
+	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
+	public void Happy_Flag_Deletion(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	{
+	SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();
+	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
+	SharedDriver.pageContainer.vendorPage.advancedSearch();
+	SharedDriver.pageContainer.vendorPage.gobalIDSearchGlobal(dataMap.get("GlobalId"));	
+	SharedDriver.pageContainer.vendorPage.clickflagDeletion();
+	SharedDriver.pageContainer.vendorPage.clickOk();
+	}
+	
 }
 
