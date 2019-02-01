@@ -342,7 +342,7 @@ public class Material_JDE_Page {
 		Sync.waitForElementToBeClickable(driver, dropdown);
 		Button.click("Wait for VAT posting group Select", dropdown);
 		Select roundVATPostingGroupDown= new Select(dropdown);
-		roundVATPostingGroupDown.selectByVisibleText("RAWM, Raw Materials");
+		roundVATPostingGroupDown.selectByVisibleText("CTDB, CTS - DB Inst Non-Cap");
 		
 	}
 	
