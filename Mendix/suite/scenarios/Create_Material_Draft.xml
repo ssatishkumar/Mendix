@@ -68,7 +68,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="Process_Information_Check_submit">
+	<!--<test name="Process_Information_Check_submit">
 		<classes>
 			<class name="com.mendix.test.MaterialScript">
 				<methods>
@@ -97,7 +97,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="Process_Information_Check_synidication">
+	 <test name="Process_Information_Check_synidication">
 		<classes>
 			<class name="com.mendix.test.MaterialScript">
 				<methods>
@@ -124,7 +124,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 </suite> 
 
 
