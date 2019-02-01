@@ -35,13 +35,13 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialPage.uomPrimarySelectionTest();
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialPage.validateTestCreate();
-//		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
+		//		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 	}
 	@Test
 	public void Material_Create_Fill_In_Data_JDE_Planning() throws InterruptedException, FileNotFoundException, IOException, AWTException 
 	{
 		SharedDriver.pageContainer.materialNavPage.enterLocalData();
-//		SharedDriver.pageContainer.materialJdePage.clickAddPlantData();
+		//		SharedDriver.pageContainer.materialJdePage.clickAddPlantData();
 		SharedDriver.pageContainer.materialJdePage.enterPlantData();
 		SharedDriver.pageContainer.materialJdePage.clickEditPlanningData();
 		SharedDriver.pageContainer.materialJdePage.selectStockingTypeLocal();
@@ -66,9 +66,9 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialJdePage.clickBackAction();
 		SharedDriver.pageContainer.materialJdePage.clickProceedAction();
 		SharedDriver.pageContainer.materialJdePage.clickPlantData();*/
-//		SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();
-		
-	/*	SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();*/
+		//		SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();
+
+		/*	SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();*/
 		SharedDriver.pageContainer.materialJdePage.selectGLClass();
 		SharedDriver.pageContainer.materialJdePage.selectCostingMethodPurchasing();
 		SharedDriver.pageContainer.materialJdePage.selectCostingMethodSales();
@@ -78,9 +78,9 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.clickValidatLocalData();
 		SharedDriver.pageContainer.materialNavPage.clickSaveButton();
-		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
+		/*SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.submitGlobalRequestTest();
-		SharedDriver.pageContainer.materialPage.getRequestId();
+		SharedDriver.pageContainer.materialPage.getRequestId();*/
 	}
 
 	@Test
@@ -96,6 +96,7 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.clickSaveButton();
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
+
 		SharedDriver.pageContainer.materialNavPage.submitGlobalRequestTest();
 		SharedDriver.pageContainer.materialPage.getRequestId();
 	}
@@ -108,7 +109,7 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.processInfoPage.getState(dataMap.get("RequestId"));
 		SharedDriver.pageContainer.processInfoPage.browserClose();
 	}
-	
+
 	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
 	public void Process_Information_Check_Local(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException 
 	{
@@ -129,7 +130,7 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
 
 	}
-	
+
 	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
 	public void Material_Create_Review_Global_Data_Approve_LBDA(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException 
 	{
@@ -140,7 +141,7 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
 
 	}
-	
+
 	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
 	public void Material_Create_Review_Global_Data_Approve_GDA(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException 
 	{
@@ -152,7 +153,7 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
 
 	}
-	
+
 	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
 	public void Material_Create_Syndication_Check (Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException 
 	{
@@ -163,10 +164,36 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialPage.scrolltoGlobalSearch();
 		SharedDriver.pageContainer.materialPage.reqIdSearchGlobal(dataMap.get("RequestId"));
 		SharedDriver.pageContainer.materialPage.getGlobalId();
-//		SharedDriver.pageContainer.materialPage.clickFullMaterialData();
-//		SharedDriver.pageContainer.materialPage.getMaterial_Number();
+		//		SharedDriver.pageContainer.materialPage.clickFullMaterialData();
+		//		SharedDriver.pageContainer.materialPage.getMaterial_Number();
 		SharedDriver.pageContainer.processInfoPage.browserClose();	
-//		SharedDriver.pageContainer.materialApprovalPage.launchUFT();
+		//		SharedDriver.pageContainer.materialApprovalPage.launchUFT();
+	}
+
+	@Test
+	public void Material_Create_Validate_Submit_Check() throws InterruptedException, FileNotFoundException, IOException 
+	{
+		SharedDriver.pageContainer.materialPage.clickLocalAction();
+		SharedDriver.pageContainer.materialPage.validateTestCreate();
+		SharedDriver.pageContainer.materialPage.submitGlobalRequestTest();
+		SharedDriver.pageContainer.materialPage.getRequestId_Create();
+		// SharedDriver.pageContainer.materialPage.getRequestId();
+		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
+
+	}
+
+	@Test
+	public void Material_Create_Jde_Validate_Submit_Check() throws InterruptedException, FileNotFoundException, IOException 
+	{
+		SharedDriver.pageContainer.materialPage.clickLocalAction();
+		SharedDriver.pageContainer.materialPage.validateTestCreateLocal();
+//		SharedDriver.pageContainer.materialPage.clickLocalAction();
+//		SharedDriver.pageContainer.materialPage.clickLocalAction();
+		SharedDriver.pageContainer.materialPage.submitBtnClick_Local();
+//		SharedDriver.pageContainer.materialPage.getRequestId_Create_Local();
+		SharedDriver.pageContainer.materialPage.getRequestId();
+		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
+
 	}
 }
 
