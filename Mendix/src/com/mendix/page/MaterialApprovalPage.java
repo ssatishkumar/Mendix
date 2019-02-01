@@ -84,6 +84,9 @@ public class MaterialApprovalPage {
 
 	@FindBy(how=How.XPATH, using="//*[text()='OK']")
 	WebElement btnMsgReqIdOkdraft;
+	
+	@FindBy(how=How.CSS, using="div[class='modal-body mx-dialog-body']")
+	WebElement btnMsgClose;
 	/**
 	 * Enter UserName.
 	 * Enter Password
@@ -110,7 +113,7 @@ public class MaterialApprovalPage {
  		
 		WebElement waitElement = null;
 		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
-		        .withTimeout(Duration.ofMinutes(3))
+		        .withTimeout(Duration.ofMinutes(4))
 		        .pollingEvery(Duration.ofSeconds(600))
 		        .ignoring(NoSuchElementException.class)
 		        .ignoring(TimeoutException.class);
@@ -352,65 +355,22 @@ public class MaterialApprovalPage {
 
 	public void submitRequestOkBtnClick()
 	{
-
 		Sync.waitForSeconds(Constants.WAIT_2);
-		String buttonColor = btnMsgReqIdOk.getCssValue("background-color");
-        String buttonTextColor = btnMsgReqIdOk.getCssValue("color");
-        System.out.println("Button color: " + buttonColor);
-        System.out.println("Text color " + buttonTextColor);
-//		WebElement waitElement = null;
-		/*FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
-		        .withTimeout(Duration.ofMinutes(3))
-		        .pollingEvery(Duration.ofSeconds(600))
-		        .ignoring(NoSuchElementException.class)
-		        .ignoring(TimeoutException.class);*/
-		 
-		//First checking to see if the loading indicator is found
-		// we catch and throw no exception here in case they aren't ignored
-/*		try {
-		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
-		   public WebElement apply(WebDriver driver) {
-		      return driver.findElement(By.cssSelector(".btn.btn-primary"));
-		   }
-		 });
-		    } catch (Exception e) {
-		   }*/
-		 
-		//checking if loading indicator was found and if so we wait for it to
-		//disappear
-//		  if (waitElement != null) {
-		      WebDriverWait wait = new WebDriverWait(driver, 120);
-		      wait.until(ExpectedConditions.visibilityOfElementLocated(
-		    		  By.cssSelector(".btn.btn-primary"))
-		            );
-//		        }
-		
-/*		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)                            
-				.withTimeout(Duration.ofSeconds(300))          
-				.pollingEvery(Duration.ofMillis(600))          
-				.ignoring(NoSuchElementException.class);
-
-		WebElement btnMsgReqIdOk=wait.until(new Function<WebDriver, WebElement>() {       
-			public WebElement apply(WebDriver driver) { 
-				return driver.findElement(By.cssSelector(".btn.btn-primary"));     
-			}  
-		});*/
-
-
-		/*Actions btnselect = new Actions(driver);
-		btnselect.moveToElement(btnMsgReqIdOk);
-		btnselect.build();
-		btnselect.perform();*/
 		/*String buttonColor = btnMsgReqIdOk.getCssValue("background-color");
         String buttonTextColor = btnMsgReqIdOk.getCssValue("color");
         System.out.println("Button color: " + buttonColor);
-        System.out.println("Text color " + buttonTextColor);*/
-//		System.out.println(btnMsgReqIdOk.getCssValue("color"));
-//		if(btnMsgReqIdOk.getCssValue("color").equalsIgnoreCase("122, 176, 8, 1")) {
+        System.out.println("Text color " + buttonTextColor);
+*/		      WebDriverWait wait = new WebDriverWait(driver, 60);
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+		    		  By.xpath(".//*[@id='mxui_widget_Progress_0']"))
+		            );
+		      By loadingImage = By.xpath(".//*[@id='mxui_widget_Progress_0']");
+		      WebDriverWait waittime = new WebDriverWait(driver, 60);
+		      waittime.until(ExpectedConditions.invisibilityOfElementLocated(loadingImage));
+		      Actions actions= new Actions(driver);
+		      actions.moveToElement(btnMsgReqIdOk);
+		      actions.perform();
 			Button.click("Click Ok Button", btnMsgReqIdOk);
-			
-//		}
-		
 	}
 
 	public boolean submitGlobalRequest()
@@ -508,5 +468,48 @@ public class MaterialApprovalPage {
 
 
 		}
+	}
+	
+	public void okbuttonClick() {
+		
+      try {
+    	  WebElement waitElement = null;
+  		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+  		        .withTimeout(Duration.ofMinutes(3))
+  		        .pollingEvery(Duration.ofSeconds(600))
+  		        .ignoring(NoSuchElementException.class)
+  		        .ignoring(TimeoutException.class);
+  		 
+  		//First checking to see if the loading indicator is found
+  		// we catch and throw no exception here in case they aren't ignored
+  		try {
+  		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+  		   public WebElement apply(WebDriver driver) {
+  		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+  		   }
+  		 });
+  		    } catch (Exception e) {
+  		   }
+  		 
+  		//checking if loading indicator was found and if so we wait for it to
+  		//disappear
+  		  if (waitElement != null) {
+  		      WebDriverWait wait = new WebDriverWait(driver, 60);
+  		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+  		    		  By.cssSelector("div[class='modal-body mx-dialog-body']"))
+  		            );
+  		        }
+		if(btnMsgClose.isEnabled())
+		{
+			Button.click("Click close Button", btnMsgClose);
+			System.out.println("Button is Clicked");
+			Button.click("Click Ok Button", btnMsgReqIdOk);
+		}
+
+	}
+	catch(Exception e) {
+		System.err.println(e.getMessage());
+		
+	}
 	}
 }
