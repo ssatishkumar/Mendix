@@ -1,7 +1,11 @@
 {
   "version": "v1",
   "title": "Eclipse",
+<<<<<<< HEAD
   "timestamp": 1548131179436,
+=======
+  "timestamp": 1548046168169,
+>>>>>>> origin/master
   "ttl": 10080,
   "helpUrl": "https://dev.eclipse.org/recommenders/community/aeri/v2/help/",
   "feedbackUrl": "https://www.codetrails.com/error-analytics/",
@@ -23,7 +27,10 @@
     "org.fordiac.*"
   ],
   "acceptedPackages": [
+<<<<<<< HEAD
     "adaptorinterface.impl.*",
+=======
+>>>>>>> origin/master
     "ch.qos.*",
     "com.cforcoding.*",
     "com.google.*",
@@ -44,7 +51,10 @@
     "sun.*"
   ],
   "requiredPackages": [
+<<<<<<< HEAD
     "adaptorinterface.impl.*",
+=======
+>>>>>>> origin/master
     "com.cforcoding.*",
     "com.gradleware.tooling.*",
     "com.mountainminds.eclemma.*",

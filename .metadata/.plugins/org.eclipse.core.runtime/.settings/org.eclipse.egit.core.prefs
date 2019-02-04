@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 GitRepositoriesView.GitDirectories=C\:\\Vendor_Workspace\\MDM_POC_Upgrade\\.git;
 GitRepositoriesView.GitDirectories.relative=MDM_POC_Upgrade\\.git;
+=======
+GitRepositoriesView.GitDirectories=C\:\\Users\\SatishKumarSundaramo\\git\\repository\\.git;C\:\\Users\\SatishKumarSundaramo\\git\\NewRepository\\.git;
+GitRepositoriesView.GitDirectories.relative=C\:\\Users\\SatishKumarSundaramo\\git\\repository\\.git;C\:\\Users\\SatishKumarSundaramo\\git\\NewRepository\\.git;
+>>>>>>> origin/master
 eclipse.preferences.version=1
