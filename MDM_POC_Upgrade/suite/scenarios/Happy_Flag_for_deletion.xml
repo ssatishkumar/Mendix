@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Happy Flag for deletion">
+	<test name="HeiPort_Login_LDR">
+		<classes>
+			<class name="com.mendix.test.LoginScript">
+				<methods>
+					<include name="tasKill" />
+					<include name="openBrowser" />
+					<include name="loginAsLDRVendor" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Happy_Flag_Deletion">
+		<classes>
+			<class name="com.mendix.test.VendorScript">
+				<methods>
+					<include name="Happy_Flag_Deletion" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite> 
+
+
