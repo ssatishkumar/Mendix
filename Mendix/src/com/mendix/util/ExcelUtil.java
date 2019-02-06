@@ -181,14 +181,14 @@ public class ExcelUtil {
 		return columnNamesMap;
 	}
 
-	public static void excelWrite(String globalId)
+	public static void excelWrite(String requestId)
 			throws FileNotFoundException, IOException {
 		try {
 			FileInputStream fis = new FileInputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
-			XSSFSheet sheet = workbook.getSheet("MaterialPage");
+			XSSFSheet sheet = workbook.getSheet("TestPlan");
 			Cell cell = sheet.getRow(1).getCell(3);
-			cell.setCellValue(globalId);
+			cell.setCellValue(requestId);
 			FileOutputStream fos = new FileOutputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
 			workbook.write(fos);
 			fos.close();
@@ -203,7 +203,7 @@ public class ExcelUtil {
 		try {
 			FileInputStream fis = new FileInputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
-			XSSFSheet sheet = workbook.getSheet("MaterialPage");
+			XSSFSheet sheet = workbook.getSheet("TestPlan");
 			Cell cell = sheet.getRow(1).getCell(4);
 			cell.setCellValue(globalId);
 			FileOutputStream fos = new FileOutputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
@@ -220,7 +220,7 @@ public class ExcelUtil {
 		try {
 			FileInputStream fis = new FileInputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
-			XSSFSheet sheet = workbook.getSheet("MaterialPage");
+			XSSFSheet sheet = workbook.getSheet("TestPlan");
 			Cell cell = sheet.getRow(1).getCell(5);
 			cell.setCellValue(materialNum);
 			FileOutputStream fos = new FileOutputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
