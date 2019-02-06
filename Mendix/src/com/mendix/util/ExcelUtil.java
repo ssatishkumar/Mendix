@@ -303,9 +303,6 @@ public class ExcelUtil {
 		//        return true;
 	}
 
-	public static void main(String args[]) throws IOException {
-		Runtime.getRuntime().exec("AutoIt UFT Launch/UFT.exe");
-
-	}
+	
 
 }
