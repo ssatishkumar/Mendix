@@ -1,5 +1,6 @@
 package com.mendix.page;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.NoSuchElementException;
@@ -9,6 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -23,6 +26,7 @@ import com.mendix.tool.Button;
 import com.mendix.tool.Constants;
 import com.mendix.tool.Sync;
 import com.mendix.tool.Textbox;
+import com.mendix.util.ExcelUtil;
 
 public class MaterialApprovalPage {
 
@@ -47,9 +51,7 @@ public class MaterialApprovalPage {
 	@FindBy(how=How.XPATH, using=".//*[@class='glyphicon glyphicon-search']")
 	WebElement btnReqIdSearch;
 
-	//	@FindBy(how=How.XPATH, using="button//*[text()='Search']")
-	//	@FindBy(how=How.CSS, using="button[text='Search']")
-	@FindBy(how=How.XPATH, using="//*[text()='Search']")
+	@FindBy(how=How.XPATH, using=".//*[text()='Search']")
 	WebElement btnReqIdMyTaskSearch;
 
 	@FindBy(how=How.XPATH, using="//label[text()='Request ID']/../../div[2]/input")
@@ -64,29 +66,28 @@ public class MaterialApprovalPage {
 	@FindBy(how=How.XPATH, using="//a[text()=' My Tasks']")
 	WebElement menuMyTask;
 
+//	@FindBy(how=How.XPATH, using="//div[@class='mx-placeholder']/button")
 	@FindBy(how=How.XPATH, using="//span[@class='glyphicon glyphicon-flash']")
 	WebElement btnlocalAction;
+	
+	@FindBy(how=How.XPATH, using="//*[text()='Reject Global Request']")
+	WebElement btnRejectAction;
 
+//	@FindBy(how=How.XPATH, using=".//*[@class='btn mx-button mx-name-actionButton11 btn-success']")
 	@FindBy(how=How.CSS, using=".glyphicon.glyphicon-ok")
 	WebElement btnGDAApproval;
-	
-	@FindBy(how=How.CSS, using="glyphicon glyphicon-save")
-	WebElement btnGlobalRequestSubmit;
 
 	@FindBy(how=How.XPATH, using="//*[text()='Proceed']")
 	WebElement btnProceed;
 
 	@FindBy(how=How.XPATH, using=".//button[text()='Submit Global Request']")
 	WebElement btnGlobalRequest;
-
-	@FindBy(how=How.CSS, using=".btn.btn-primary")
-	WebElement btnMsgReqIdOk;
-
-	@FindBy(how=How.XPATH, using="//*[text()='OK']")
-	WebElement btnMsgReqIdOkdraft;
 	
 	@FindBy(how=How.CSS, using="div[class='modal-body mx-dialog-body']")
-	WebElement btnMsgClose;
+    WebElement btnMsgClose;
+	
+	@FindBy(how=How.CSS, using=".btn.btn-primary")
+    WebElement btnMsgReqIdOk;
 	/**
 	 * Enter UserName.
 	 * Enter Password
@@ -191,6 +192,47 @@ public class MaterialApprovalPage {
 		Sync.waitForSeconds(Constants.WAIT_2);
 		return Button.jsclick("Click Approval Button", btnGDAApproval, driver);
 	}
+
+public boolean rejectBtnClick()
+	{
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitUntilObjectDisappears(driver, "Wait My tasks to load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
+		
+		WebElement waitElement = null;
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+		        .withTimeout(Duration.ofMinutes(3))
+		        .pollingEvery(Duration.ofSeconds(600))
+		        .ignoring(NoSuchElementException.class)
+		        .ignoring(TimeoutException.class);
+		 
+		//First checking to see if the loading indicator is found
+		// we catch and throw no exception here in case they aren't ignored
+		try {
+		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+		   public WebElement apply(WebDriver driver) {
+		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+		   }
+		 });
+		    } catch (Exception e) {
+		   }
+		 
+		//checking if loading indicator was found and if so we wait for it to
+		//disappear
+		  if (waitElement != null) {
+		      WebDriverWait wait = new WebDriverWait(driver, 60);
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+		    		  By.xpath("//*[text()='Reject Global Request']"))
+		            );
+		        }
+		
+		
+		
+		Sync.waitForElementToBeClickable(driver, btnlocalAction);
+		Button.click("Click Local Action button", btnlocalAction);
+		Sync.waitForSeconds(Constants.WAIT_2);
+		return Button.jsclick("Click Approval Button", btnGDAApproval, driver);
+	}
+
 
 	public void approvalBtnClick_Local()
 	{
@@ -380,8 +422,8 @@ public class MaterialApprovalPage {
 		Button.click("Click Local Action button", btnlocalAction);
 		return Button.click("Click Approval button", btnGlobalRequest);
 	}
-
-	public boolean submitGlobalRequest_draft()
+	
+	public boolean RejectBtnClick()
 	{
 
 		Sync.waitForElementToBeClickable(driver, btnlocalAction);

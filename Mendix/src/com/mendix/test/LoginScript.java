@@ -13,18 +13,13 @@ import org.testng.annotations.Test;
 import com.mendix.page.ProceesInfoPage;
 import com.mendix.tool.Constants;
 import com.mendix.tool.SharedDriver;
-import com.mendix.util.DataProviderUtil.staticProviderClass;
 import com.mendix.util.HelperUtil;
 import com.mendix.util.ResultUtil;
-
-
+import com.mendix.util.DataProviderUtil.staticProviderClass;
 
 
 
 public class LoginScript { 
-
-
-
 	/**
 	 * kill the task.
 	 * @throws IOException 
@@ -74,6 +69,14 @@ public class LoginScript {
 		String OpL=Opco.length() < 2 ? Opco : Opco.substring(0, 2);
 		SharedDriver.pageContainer.loginPage.login("MDMM_"+OpL+"01_LDR","Heineken01");
 	}
+	
+	@Test
+	public void loginAsLDRVendor(){
+		ResultUtil.reporter.startTest("Login As LDR for Vendor");
+		//SharedDriver.createDriver();
+		SharedDriver.pageContainer.loginPage.login_Vendor("MDVM_"+HelperUtil.executionConfigMap.get(Constants.OPCO)+"01_LDR","Heineken01");
+		
+	}
 
 	@Test(dataProvider="HeiPort_Login",dataProviderClass=staticProviderClass.class)
 	public void loginAsApprover(Map<String,String> dataMap){
@@ -116,13 +119,20 @@ public class LoginScript {
 
 	@Test
 	public void loginAsGDA(){
-		ResultUtil.reporter.startTest("Login As GBDA");
+		ResultUtil.reporter.startTest("Login As GDA");
 		//SharedDriver.createDriver();
 		Assert.assertTrue(SharedDriver.pageContainer.loginPage.login("MDM_GDA", "Heineken01"));		
 
 	}
-
-
+	
+	@Test
+	public void loginAsLDSVendor(){
+		ResultUtil.reporter.startTest("Login As LDS for Vendor Approval");
+		//SharedDriver.createDriver();
+		SharedDriver.pageContainer.loginPage.login_Vendor("MDVM_"+HelperUtil.executionConfigMap.get(Constants.OPCO)+"01_LDS","Heineken01");
+		
+	}
+	
 	/**
 	 * Sets the up.
 	 *

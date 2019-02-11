@@ -220,6 +220,11 @@ public class Material_Nav_Page {
 		jse.executeScript("arguments[0].click()", driver.findElement(By.xpath("(//*[text()='OK'])[1]")));*/
 	}
 	
+	public void clickBackAction()
+	{
+		Sync.waitForSeconds(Constants.WAIT_2);
+		driver.findElement(By.cssSelector("glyphicon glyphicon-backward")).click();
+	}
 	
 	
 	
@@ -308,7 +313,7 @@ public class Material_Nav_Page {
 		//disappear
 		  if (waitElement != null) {
 		      WebDriverWait wait = new WebDriverWait(driver, 60);
-		      wait.until(ExpectedConditions.invisibilityOfElementLocated(
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(
 		    		  By.cssSelector(".btn.btn-primary"))
 		            );
 		        }

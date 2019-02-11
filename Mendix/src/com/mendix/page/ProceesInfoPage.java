@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
+import org.apache.xalan.xsltc.compiler.sym;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -20,12 +21,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.mendix.tool.Button;
 import com.mendix.tool.Constants;
 import com.mendix.tool.Sync;
 import com.mendix.tool.Textbox;
+import com.mendix.util.ExcelUtil;
 
 public class ProceesInfoPage {
 
@@ -91,8 +94,19 @@ public class ProceesInfoPage {
 	 * @return 
 	 * @return true, if successful
 	 */
-	
-   
+
+
+	public boolean reqIdSearch(String strValue) throws InterruptedException, FileNotFoundException, IOException {
+
+		driver.switchTo().window("Application");
+		Sync.waitForSeconds(Constants.WAIT_3);
+		Sync.waitForObject(driver, "Wait for Request Id", txtboxRequestId);
+		Textbox.click("Click Request Id Text Box", txtboxRequestId);
+		Textbox.clear("Clear Request Id Text Box", txtboxRequestId);
+		Textbox.enterValue("Enter Request Id", txtboxRequestId, strValue);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		return Button.click("Click Request Id Search Button", btnReqIdSearch);
+	}
 	public void reqIdSearch_Global(String strValue) throws InterruptedException, FileNotFoundException, IOException {
 
 //		driver.switchTo().window("Application");
@@ -175,13 +189,13 @@ public class ProceesInfoPage {
 		return Button.click("Click the Procees info search menu", menuProcessInfoSearch);
 	}
 
-	public String getState(String strValue){
+	public String getState(String strValue) throws InterruptedException{
 		Sync.waitForSeconds(Constants.WAIT_6);
 		Sync.waitForSeconds(Constants.WAIT_3);
 		Sync.waitForObject(driver, "Wait for the status to display", txtStatus);
 		String state=driver.findElement(By.xpath(".//*[text()='"+strValue+"']/../../td[9]/div")).getText();
 		System.out.println(state);
-		Sync.waitForSeconds(Constants.WAIT_5);
+//		ExcelUtil.setCellData("MDM", "Level2", 2, state);
 		return state;
 	}
 
@@ -225,20 +239,20 @@ public class ProceesInfoPage {
 		
 		Textbox.enterValue("Enter TextBox Value", txtboxRequestedDatebetween, dateFormatted);
 	}*/
-	public void browserClose() {
+	/*public void browserClose() {
 
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForSeconds(Constants.WAIT_5);
 		driver.close();
 		driver.quit();
-	}
+	}*/
 	
 	public String movedata(String state){
 	    return this.state;
 	}
 	
-public String ValidateStateLDR(String strValue){
+	public String ValidateStateLDR(String strValue){
 		
 		String state=driver.findElement(By.xpath(".//*[text()='"+strValue+"']/../../td[9]/div")).getText();
 		
@@ -263,6 +277,13 @@ public String ValidateStateLDR(String strValue){
 		Assert.assertEquals(state, "GDA");
 		
 		return state;
+	}
+	public void browserClose() {
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForSeconds(Constants.SCRIPT_WAIT_TIME);
+		driver.close();
+		driver.quit();
+		
 	}
 
 }

@@ -35,13 +35,13 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialPage.uomPrimarySelectionTest();
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialPage.validateTestCreate();
-		//		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
+//		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 	}
 	@Test
 	public void Material_Create_Fill_In_Data_JDE_Planning() throws InterruptedException, FileNotFoundException, IOException, AWTException 
 	{
 		SharedDriver.pageContainer.materialNavPage.enterLocalData();
-		//		SharedDriver.pageContainer.materialJdePage.clickAddPlantData();
+//		SharedDriver.pageContainer.materialJdePage.clickAddPlantData();
 		SharedDriver.pageContainer.materialJdePage.enterPlantData();
 		SharedDriver.pageContainer.materialJdePage.clickEditPlanningData();
 		SharedDriver.pageContainer.materialJdePage.selectStockingTypeLocal();
@@ -66,9 +66,9 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialJdePage.clickBackAction();
 		SharedDriver.pageContainer.materialJdePage.clickProceedAction();
 		SharedDriver.pageContainer.materialJdePage.clickPlantData();*/
-		//		SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();
-
-		/*	SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();*/
+//		SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();
+		
+	/*	SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();*/
 		SharedDriver.pageContainer.materialJdePage.selectGLClass();
 		SharedDriver.pageContainer.materialJdePage.selectCostingMethodPurchasing();
 		SharedDriver.pageContainer.materialJdePage.selectCostingMethodSales();
@@ -78,9 +78,9 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.clickValidatLocalData();
 		SharedDriver.pageContainer.materialNavPage.clickSaveButton();
-		/*SharedDriver.pageContainer.materialNavPage.clickLocalAction();
+		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.submitGlobalRequestTest();
-		SharedDriver.pageContainer.materialPage.getRequestId();*/
+		SharedDriver.pageContainer.materialPage.getRequestId();
 	}
 
 	@Test
@@ -164,10 +164,10 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialPage.scrolltoGlobalSearch();
 		SharedDriver.pageContainer.materialPage.reqIdSearchGlobal(dataMap.get("RequestId"));
 		SharedDriver.pageContainer.materialPage.getGlobalId();
-		//		SharedDriver.pageContainer.materialPage.clickFullMaterialData();
-		//		SharedDriver.pageContainer.materialPage.getMaterial_Number();
+//		SharedDriver.pageContainer.materialPage.clickFullMaterialData();
+//		SharedDriver.pageContainer.materialPage.getMaterial_Number();
 		SharedDriver.pageContainer.processInfoPage.browserClose();	
-		//		SharedDriver.pageContainer.materialApprovalPage.launchUFT();
+//		SharedDriver.pageContainer.materialApprovalPage.launchUFT();
 	}
 
 	@Test
