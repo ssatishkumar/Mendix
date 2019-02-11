@@ -8,7 +8,7 @@
 				    <include name="tasKill" />
 					<include name="openBrowser" />
 					<include name="loginAsLDR" />
-				</methods> 	
+				</methods>
 			</class>
 		</classes>
 	</test>
@@ -16,7 +16,7 @@
 		<classes>
 			<class name="com.mendix.test.MaterialChangeScript">
 				<methods>
-					<include name="Material_Change_Syndication_Check" />
+					<include name="Material_Create_Reference_Syndication_Check" />
 				</methods>
 			</class>
 		</classes>
@@ -25,7 +25,7 @@
 		<classes>
 			<class name="com.mendix.test.MaterialChangeScript">
 				<methods>
-					<include name="Material_Create_Fill_In_Data_Change" />
+					<include name="Material_Create_Fill_In_Data_Reference" />
 				</methods>
 			</class>
 		</classes>
@@ -58,20 +58,40 @@
 			</class>
 		</classes>
 	</test>
-	<test name="Material_Data_With_Reject_GDA">
+	<test name="Material_Change_Review_Global_Data_Approve_GDA">
 		<classes>
 			<class name="com.mendix.test.MaterialScript">
 				<methods>
-					<include name="Material_Data_With_Reject_GDA" />
+					<include
+						name="Material_Create_Review_Global_Data_Approve_GDA" />
 				</methods>
 			</class>
 		</classes>
 	</test>
-	<test name="Process_Information_Check_GDA">
+	<test name="Process_Information_Check_Syndication">
 		<classes>
 			<class name="com.mendix.test.MaterialScript">
 				<methods>
 					<include name="Process_Information_Check" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="HeiPort_Login_LDR_Syndication">
+		<classes>
+			<class name="com.mendix.test.LoginScript">
+				<methods>
+					<include name="openBrowser" />
+					<include name="loginAsLDR" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Material_Change_Syndication_Check">
+		<classes>
+			<class name="com.mendix.test.MaterialScript">
+				<methods>
+					<include name="Material_Create_Syndication_Check" />
 				</methods>
 			</class>
 		</classes>

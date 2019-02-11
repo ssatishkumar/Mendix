@@ -289,6 +289,8 @@ public class ExcelUtil {
 			if(cell == null)
 				cell = row.createCell(col_Num);
 			System.out.println(value);
+
+			
 			cell.setCellValue(value);
 			
 			FileOutputStream fos = new FileOutputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);

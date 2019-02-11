@@ -1,9 +1,12 @@
 package com.mendix.util;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.mendix.tool.Constants;
@@ -24,13 +27,11 @@ public class BrowserUtil {
  * @param strURL the str url
  * @return the driver
  */
-@SuppressWarnings("deprecation")
 public static WebDriver getDriver(String strBrowser,String strURL){
 	WebDriver driver=null;
 	try{
 		if(strBrowser.equalsIgnoreCase("IE")){
 			System.setProperty("webdriver.ie.driver", "drivers/IEDriverServer.exe");
-			
 			DesiredCapabilities ieCap=new DesiredCapabilities();
         	ieCap.setCapability("ignoreZoomSetting", true);
         	ieCap.setCapability("requireWindowFocus", true);
@@ -40,6 +41,7 @@ public static WebDriver getDriver(String strBrowser,String strURL){
         	
             driver = new InternetExplorerDriver(ieCap);
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		}
 		else if(strBrowser.equalsIgnoreCase("FIREFOX")){
 			driver=new FirefoxDriver();
@@ -51,6 +53,7 @@ public static WebDriver getDriver(String strBrowser,String strURL){
 			driver.manage().window().maximize();
 		}
 		driver.get(strURL);
+		
 //		ResultUtil.report(Constants.STATUS_PASS, "Opened "+strURL+" on "+strBrowser);
 	}
 	catch(Exception e){
