@@ -68,7 +68,7 @@
 			</class>
 		</classes>
 	</test>
-	<!--<test name="Process_Information_Check_submit">
+	<test name="Process_Information_Check_submit">
 		<classes>
 			<class name="com.mendix.test.MaterialScript">
 				<methods>
@@ -92,7 +92,7 @@
 			<class name="com.mendix.test.MaterialScript">
 				<methods>
 					<include
-						name="Material_Create_Review_Global_Data_Approve_GDA" />
+						name="Material_Create_Review_Global_Data_Approve_GDA_Duplicate" />
 				</methods>
 			</class>
 		</classes>
@@ -124,7 +124,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 </suite> 
 
 

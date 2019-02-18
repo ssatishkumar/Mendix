@@ -38,6 +38,7 @@ public class LoginScript {
 		try {
 			Runtime.getRuntime().exec("taskkill /T /F /IM IEDriverServer.exe");
 			Runtime.getRuntime().exec("taskkill /T /F /IM UFT.exe");
+			Runtime.getRuntime().exec("taskkill /f /t /IM EXCEL.EXE");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,7 +68,7 @@ public class LoginScript {
 		String opcoLogin= dataMap.get("OpCo");
 		String Opco=opcoLogin.replaceAll("\\d","");
 		String OpL=Opco.length() < 2 ? Opco : Opco.substring(0, 2);
-		SharedDriver.pageContainer.loginPage.login("MDMM_"+OpL+"01_LDR","Heineken01");
+		SharedDriver.pageContainer.loginPage.login("MDMM_"+OpL+"04_LDR","Heineken01");
 	}
 	
 	@Test

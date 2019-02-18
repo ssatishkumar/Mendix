@@ -397,15 +397,15 @@ public boolean rejectBtnClick()
 
 	public void submitRequestOkBtnClick()
 	{
-		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForSeconds(Constants.WAIT_3);
 		/*String buttonColor = btnMsgReqIdOk.getCssValue("background-color");
         String buttonTextColor = btnMsgReqIdOk.getCssValue("color");
         System.out.println("Button color: " + buttonColor);
         System.out.println("Text color " + buttonTextColor);
-*/		      WebDriverWait wait = new WebDriverWait(driver, 60);
+*/		      /*WebDriverWait wait = new WebDriverWait(driver, 60);
 		      wait.until(ExpectedConditions.visibilityOfElementLocated(
 		    		  By.xpath(".//*[@id='mxui_widget_Progress_0']"))
-		            );
+		            );*/
 		      By loadingImage = By.xpath(".//*[@id='mxui_widget_Progress_0']");
 		      WebDriverWait waittime = new WebDriverWait(driver, 60);
 		      waittime.until(ExpectedConditions.invisibilityOfElementLocated(loadingImage));

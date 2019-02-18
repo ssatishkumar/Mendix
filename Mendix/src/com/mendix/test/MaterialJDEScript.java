@@ -12,6 +12,8 @@ import org.testng.annotations.Test;
 import com.mendix.tool.SharedDriver;
 import com.mendix.util.DataProviderUtil.staticProviderClass;
 
+import sun.text.normalizer.Trie.DataManipulate;
+
 
 
 public class MaterialJDEScript {
@@ -37,27 +39,27 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialPage.validateTestCreate();
 //		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 	}
-	@Test
-	public void Material_Create_Fill_In_Data_JDE_Planning() throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	@Test(dataProvider="CreateMaterial_Fill_In",dataProviderClass=staticProviderClass.class)
+	public void Material_Create_Fill_In_Data_JDE_Planning(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
 	{
 		SharedDriver.pageContainer.materialNavPage.enterLocalData();
 //		SharedDriver.pageContainer.materialJdePage.clickAddPlantData();
-		SharedDriver.pageContainer.materialJdePage.enterPlantData();
+		SharedDriver.pageContainer.materialJdePage.enterPlantData(dataMap.get("Plant"));
 		SharedDriver.pageContainer.materialJdePage.clickEditPlanningData();
-		SharedDriver.pageContainer.materialJdePage.selectStockingTypeLocal();
-		SharedDriver.pageContainer.materialJdePage.selectCommitmentDateMethod();
-		SharedDriver.pageContainer.materialJdePage.selectLotCalculationAlgorithm();
-		SharedDriver.pageContainer.materialJdePage.selectLotProcessType();
-		SharedDriver.pageContainer.materialJdePage.selectLotExpiratonDateCalculationMethod();
-		SharedDriver.pageContainer.materialJdePage.selectMasterPlanningFamily();
-		SharedDriver.pageContainer.materialJdePage.selectPlanningCode();
+		SharedDriver.pageContainer.materialJdePage.selectStockingTypeLocal(dataMap.get("Stocking Type Global"));
+		SharedDriver.pageContainer.materialJdePage.selectCommitmentDateMethod(dataMap.get("Commitment Method"));
+		SharedDriver.pageContainer.materialJdePage.selectLotCalculationAlgorithm(dataMap.get("Lot Calculation Algorithm"));
+		SharedDriver.pageContainer.materialJdePage.selectLotProcessType(dataMap.get("Lot Process Type"));
+		SharedDriver.pageContainer.materialJdePage.selectLotExpiratonDateCalculationMethod(dataMap.get("Lot Expiration Date Cal Method"));
+		SharedDriver.pageContainer.materialJdePage.selectMasterPlanningFamily(dataMap.get("Master Planning Family"));
+		SharedDriver.pageContainer.materialJdePage.selectPlanningCode(dataMap.get("Planning Code"));
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.clickValidatLocalData();
 		SharedDriver.pageContainer.materialNavPage.clickPlanningSaveButton();
 	}
 
-	@Test
-	public void Material_Create_Fill_In_Data_JDE_Finance() throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	@Test(dataProvider="CreateMaterial_Fill_In",dataProviderClass=staticProviderClass.class)
+	public void Material_Create_Fill_In_Data_JDE_Finance(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
 	{
 		SharedDriver.pageContainer.materialJdePage.clickFinancetab();
 		SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();
@@ -69,9 +71,9 @@ public class MaterialJDEScript {
 //		SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();
 		
 	/*	SharedDriver.pageContainer.materialNavPage.clickEditFinanceData();*/
-		SharedDriver.pageContainer.materialJdePage.selectGLClass();
-		SharedDriver.pageContainer.materialJdePage.selectCostingMethodPurchasing();
-		SharedDriver.pageContainer.materialJdePage.selectCostingMethodSales();
+		SharedDriver.pageContainer.materialJdePage.selectGLClass(dataMap.get("G/L Class"));
+		SharedDriver.pageContainer.materialJdePage.selectCostingMethodPurchasing(dataMap.get("Costing Method - Purchasing"));
+		SharedDriver.pageContainer.materialJdePage.selectCostingMethodSales(dataMap.get("Costing Method - Sales"));
 		/*SharedDriver.pageContainer.materialNavPage.selectGenProdPostingGroup();
 		SharedDriver.pageContainer.materialNavPage.selectVATPostingGroup();
 		SharedDriver.pageContainer.materialNavPage.selectItemDepositGroupCode();*/
@@ -83,14 +85,14 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialPage.getRequestId();
 	}
 
-	@Test
-	public void Material_Create_Fill_In_Data_JDE_Site() throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	@Test(dataProvider="CreateMaterial_Fill_In",dataProviderClass=staticProviderClass.class)
+	public void Material_Create_Fill_In_Data_JDE_Site(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
 	{
 		SharedDriver.pageContainer.materialNavPage.clickSiteNewTab();
 		SharedDriver.pageContainer.materialNavPage.clickEditSiteData();
 		SharedDriver.pageContainer.materialNavPage.clickSiteNewButton();
-		SharedDriver.pageContainer.materialNavPage.selectLocationCode();
-		SharedDriver.pageContainer.materialNavPage.selectReplenishmentSystem();
+		SharedDriver.pageContainer.materialNavPage.selectLocationCode(dataMap.get("Location Code"));
+		SharedDriver.pageContainer.materialNavPage.selectReplenishmentSystem(dataMap.get("Replenishment System"));
 		SharedDriver.pageContainer.materialNavPage.clickSiteValidateButton();
 		SharedDriver.pageContainer.materialNavPage.clickSiteSaveButton();
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();

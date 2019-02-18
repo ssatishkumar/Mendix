@@ -81,7 +81,7 @@ public class MaterialScript {
 	{
 
 		SharedDriver.pageContainer.processInfoPage.processInfoSearch();
-		//SharedDriver.pageContainer.processInfoPage.reqIdSearch_Global(dataMap.get("RequestId"));
+		SharedDriver.pageContainer.processInfoPage.reqIdSearch_Global(dataMap.get("RequestId"));
 	    //SharedDriver.pageContainer.processInfoPage.getState(dataMap.get("RequestId"));
 		SharedDriver.pageContainer.processInfoPage.getState_New(dataMap.get("RequestId"));
 		//SharedDriver.pageContainer.processInfoPage.requestCreated_between();
@@ -89,19 +89,20 @@ public class MaterialScript {
 		SharedDriver.pageContainer.processInfoPage.browserClose();
 	}
 
-/*	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
-	public void Material_Create_Review_Global_Data_Approve_GDA(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException 
+	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
+	public void Material_Create_Review_Global_Data_Approve_GDA_Duplicate(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException 
 	{
 		Assert.assertTrue(SharedDriver.pageContainer.homePage.navigateToWorkflow());
 		SharedDriver.pageContainer.materialPage.switchToPopup();
 		SharedDriver.pageContainer.materialApprovalPage.reqIdSearchMyTasks(dataMap.get("RequestId"));
 		SharedDriver.pageContainer.materialApprovalPage.approvalBtnClick();
 		SharedDriver.pageContainer.materialApprovalPage.duplicateCheck();
-		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
+		SharedDriver.pageContainer.materialApprovalPage.okbuttonClick();
+//		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
 //		SharedDriver.pageContainer.processInfoPage.browserClose();
 //		SharedDriver.pageContainer.materialApprovalPage.duplicateCheck();
 
-	}*/
+	}
 
 
 	/*@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
@@ -149,6 +150,7 @@ public class MaterialScript {
 		SharedDriver.pageContainer.materialPage.getRequestId_Create();
 //		SharedDriver.pageContainer.materialPage.getRequestId();
 		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
+//		SharedDriver.pageContainer.materialApprovalPage.okbuttonClick();
 
 	}
 

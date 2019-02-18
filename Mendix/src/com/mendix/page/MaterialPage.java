@@ -569,7 +569,8 @@ public class MaterialPage {
 		String[] parts = reqId.split(" ");
 		String Id = parts[2];
 		System.out.println("RequestId is: " + Id);
-		ExcelUtil.excelWrite(Id);
+//		ExcelUtil.excelWrite(Id);
+		ExcelUtil.setCellData_New("input/Mendix_TestPlan\"+Constants.EXCEL_FORMAT_XLSX", "Test_Case",  Id);
 		System.out.println("Excel write is done");
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForElementToBeClickable(driver, btnOK);
@@ -617,13 +618,15 @@ public class MaterialPage {
 		String[] parts = reqId.split(" ");
 		String Id = parts[17];
 		String IdNum = Id.replaceAll("\\.", "");
-		System.out.println("RequestId is: " + Id);
-		ExcelUtil.excelWrite(IdNum);
+		
 		System.out.println("RequestId is: " + IdNum);
-		Sync.waitForSeconds(Constants.WAIT_3);
+//		ExcelUtil.excelWrite(IdNum);
+		ExcelUtil.setCellData_New("TestPlan", "RequestId", IdNum);
+		System.out.println("RequestId is: " + IdNum);
+	/*	Sync.waitForSeconds(Constants.WAIT_3);
 		Sync.waitForElementToBeClickable(driver, btnMsgReqIdOkdraft);
-		Button.click("Click Ok Button", btnMsgReqIdOkdraft);
-		return Id;
+		Button.click("Click Ok Button", btnMsgReqIdOkdraft);*/
+		return IdNum;
 	}
 
 	
@@ -689,7 +692,7 @@ public class MaterialPage {
 		Sync.waitForObject(driver, "Wait for Global Material Id", driver.findElement(By.xpath("//*[text()='Global Material ID']/../../../../../../table[2]/tbody/tr/td[4]/div")));
 		String globalId=driver.findElement(By.xpath("//*[text()='Global Material ID']/../../../../../../table[2]/tbody/tr/td[4]/div")).getText();
 		System.out.println(globalId);
-		ExcelUtil.excelWriteGlobalId(globalId);;
+		ExcelUtil.excelWriteGlobalId(globalId);
 		return globalId;
 	}
 
@@ -717,12 +720,13 @@ public class MaterialPage {
 		Sync.waitForSeconds(Constants.WAIT_6);
 		Sync.waitForObject(driver, "Wait of Dialog Box Success Message", msgRequestSuccess);
 		String reqId=driver.findElement(By.xpath(".//*[@id='mxui_widget_DialogMessage_0']/div[1]/div[2]/p")).getText();
-		String[] parts = reqId.split("\\");
-		String Id = parts[0];
+		String[] parts = reqId.split(" ");
+		String Id = parts[2];
 		System.out.println(Id);
 		String IdNum = Id.replaceAll("\\.", "");
 		System.out.println("RequestId is: " +Id);
-		ExcelUtil.excelWrite(IdNum);
+//		ExcelUtil.excelWrite(IdNum);
+		ExcelUtil.setCellData_New("TestPlan","RequestId", Id);
 		System.out.println("RequestId is: " +IdNum);
 		Sync.waitForSeconds(Constants.WAIT_3);
 		Sync.waitForElementToBeClickable(driver, btnMsgReqIdOkdraft);

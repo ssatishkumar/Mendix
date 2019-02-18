@@ -426,7 +426,7 @@ public class Material_Nav_Page {
 //		driver.findElement(By.xpath("(//*[text()='Add'])[3]/../button[2]/span")).click();
 	}
 	
-	public void selectLocationCode()
+	/*public void selectLocationCode(String strValue)
 	{
 		Sync.waitUntilObjectDisappears(driver, "Wait for Location Code Select", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 		Sync.waitForSeconds(Constants.WAIT_5);
@@ -434,10 +434,10 @@ public class Material_Nav_Page {
 		Sync.waitForObject(driver, "Wait for Location Code Select", dropdown);
 		Button.click("Wait for Location Code Select", dropdown);
 		Select roundVATPostingGroupDown= new Select(dropdown);
-		roundVATPostingGroupDown.selectByVisibleText("DZ01, Brewery Rouiba");
-	}
+		roundVATPostingGroupDown.selectByVisibleText(strValue);//"DZ01, Brewery Rouiba"
+	}*/
 	
-	public void selectReplenishmentSystem()
+	/*public void selectReplenishmentSystem()
 	{
 		
 		Sync.waitUntilObjectDisappears(driver, "Wait for Replenishment System", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
@@ -448,7 +448,7 @@ public class Material_Nav_Page {
 		Select roundVATPostingGroupDown= new Select(dropdown);
 		roundVATPostingGroupDown.selectByVisibleText("2, Transfer");
 		
-	}
+	}*/
 }
 	
 	

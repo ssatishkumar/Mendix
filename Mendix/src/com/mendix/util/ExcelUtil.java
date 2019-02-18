@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -28,6 +29,7 @@ import com.mendix.tool.Constants;
 public class ExcelUtil {
 
 	private static XSSFWorkbook workbook;
+	public static String testCaseName= null;
 
 	/**
 	 * Gets the test data.
@@ -89,7 +91,7 @@ public class ExcelUtil {
 		try{
 			FileInputStream file1 = new FileInputStream(new File(strWorkbookPath1));
 			FileInputStream file2 = new FileInputStream(new File(strWorkbookPath2));
-			
+
 			XSSFWorkbook workbook1 = new XSSFWorkbook(file1);
 			XSSFWorkbook workbook2 = new XSSFWorkbook(file2);
 			//Get first sheet from the workbook
@@ -118,7 +120,7 @@ public class ExcelUtil {
 					}catch(Exception e){}
 					rowMap1.put(strColumnName1, strValue1.trim());
 				}
-             
+
 				while(rowIterator2.hasNext()){
 					Iterator<Cell> cellIterator2=rowIterator2.next().cellIterator();
 					Map<String,String> rowMap2=new LinkedHashMap<String, String>();
@@ -127,32 +129,32 @@ public class ExcelUtil {
 						String strValue2="";
 						try{
 							Cell cell2=cellIterator2.next();
-//							if(cell2=null){
-								strValue2=cell2.toString();
-//								}
+							//							if(cell2=null){
+							strValue2=cell2.toString();
+							//								}
 						}catch(Exception e){}
 						rowMap2.put(strColumnName2, strValue2.trim());
 					}
-				if(rowMap2.get("Execute").equalsIgnoreCase("Y")){
-//					if(rowMap1.get("Test_Case").equals(rowMap2.get("Test_Case"))){
-//						if(rowMap1.get("OpCo").equals(rowMap2.get("OpCo"))){	
-							//rowMap.put("Iteration", ""+inRowCounter);
-							
-							data.add(new Object[]{rowMap2});
-							//inRowCounter++;
-//							break;
+					if(rowMap2.get("Execute").equalsIgnoreCase("Y")){
+						//					if(rowMap1.get("Test_Case").equals(rowMap2.get("Test_Case"))){
+						//						if(rowMap1.get("OpCo").equals(rowMap2.get("OpCo"))){	
+						//rowMap.put("Iteration", ""+inRowCounter);
 
-//						}
-//					}
-//				}
+						data.add(new Object[]{rowMap2});
+						//inRowCounter++;
+						//							break;
 
-			}
+						//						}
+						//					}
+						//				}
+
+					}
 				}
-			file1.close();
-			file2.close();
-		}
+				file1.close();
+				file2.close();
 			}
-		
+		}
+
 		catch(Exception e){
 			e.printStackTrace();
 		}
@@ -263,6 +265,103 @@ public class ExcelUtil {
 		}
 	}
 
+	public static void setCellData_New(String sheetName, String colName, String value)
+	{
+		List<Object[]> data = new ArrayList<Object[]>();
+		try
+		{
+			FileInputStream fis = new FileInputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			int col_Num = 0;
+			XSSFSheet sheet = workbook.getSheet(sheetName);
+
+			XSSFRow row = sheet.getRow(getRowNum("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX, "TestPlan", value));
+			for (int i = 0; i < row.getLastCellNum(); i++) {
+				if (row.getCell(i).getStringCellValue().trim().equals(colName))
+				{
+					col_Num = i;
+				}
+			}
+
+			//			sheet.autoSizeColumn(col_Num);
+			//			row = sheet.getRow(getRowNum("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX, "TestPlan", value) - 1);
+			//			if(row==null)
+			//				row = sheet.createRow(rowNum - 1);
+			Iterator<Row> rowIterator = sheet.rowIterator();
+			Row firstRow=rowIterator.next();
+
+
+			testCaseName = getTestCaseName("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX, sheetName);
+			Map<String, String> headerRow = getColumnNames(firstRow);
+			while(rowIterator.hasNext()){
+				Iterator<Cell> cellIterator=rowIterator.next().cellIterator();
+				Map<String,String> rowMap=new LinkedHashMap<String, String>();
+				for(Entry<?, ?> entry:headerRow.entrySet()){
+					String strColumnName=entry.getKey().toString();
+					String strValue="";
+					try{
+						Cell cell=cellIterator.next();
+						if(cell!=null){strValue=cell.toString();
+						rowMap.put(strColumnName, strValue.trim());
+							
+						if(strColumnName.equalsIgnoreCase("RequestId")) {
+							if(rowMap.get("Test_Case").equalsIgnoreCase(testCaseName)){
+							cell.setCellValue(value);
+							}
+						}
+						}
+					}catch(Exception e){}
+				}
+
+				FileOutputStream fos = new FileOutputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
+				workbook.write(fos);
+				fos.close();
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			//            return  false;
+		}
+		//        return true;
+	}
+
+	public static int getRowNum(String fileName, String sheetName,
+			String cellVal) {
+		System.out.println("ExcelMethods.getRowNum: from file :-->"+fileName + "<-- and sheet -->"+ sheetName+"<---- and cellVal:"+cellVal);
+		try {
+			String path = fileName;
+			InputStream ExcelFileToRead = new FileInputStream(path);
+			XSSFWorkbook wb = new XSSFWorkbook(ExcelFileToRead);
+			XSSFSheet sheet = wb.getSheet(sheetName);
+			for (Row row : sheet) {
+				Cell cell = row.getCell(0);
+				int type = cell.getCellType();
+				if (type == Cell.CELL_TYPE_FORMULA) {
+					cell.getCachedFormulaResultType();
+					if (cell.getStringCellValue().trim().equals(cellVal)) {
+						// System.out.println("Formulae:"+row.getRowNum());
+						return row.getRowNum();
+					}
+					/*else {
+						logError("Row not found in datapool");
+					}*/
+				} else if (type == Cell.CELL_TYPE_STRING) {
+					if (cell.getStringCellValue().trim().equals(cellVal)) {
+						// System.out.println("Normal:"+row.getRowNum());
+						System.out.println("ExcelMethods.getRowNum: getting header row value from file :-->"+fileName + "<-- and sheet -->"+ sheetName+"<---- "+ " String Cell(0) value ("+cell.getStringCellValue().trim()+" Row:"+row.getRowNum()+"...");
+						return row.getRowNum();
+					}/*else {
+						logError("Row not found in datapool");
+					}*/
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 	public static void setCellData(String sheetName, String colName, int rowNum, String value)
 	{
 		try
@@ -290,9 +389,9 @@ public class ExcelUtil {
 				cell = row.createCell(col_Num);
 			System.out.println(value);
 
-			
+
 			cell.setCellValue(value);
-			
+
 			FileOutputStream fos = new FileOutputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
 			workbook.write(fos);
 			fos.close();
@@ -305,6 +404,26 @@ public class ExcelUtil {
 		//        return true;
 	}
 
-	
+	public static String getTestCaseName(String testDataFile, String sheetName)
+			throws IOException {
+		TestData.testDataFile = "C:\\Users\\SatishKumarSundaramo\\git\\Mendix_New\\Mendix\\input\\Mendix_TestPlan.xlsx";
+		ArrayList<String[]> data = TestData.getTestCaseData("TestPlan");
+		String testCaseName=null;
+		for (int i = 0; i < data.size(); i++) {
+			String[] s = data.get(i);
+			for (int j = 0; j < s.length; j++) {
+				System.out.print(s[j] + " , ");
+				testCaseName=s[2].toString();
+
+			}
+			System.out.println("");
+			//			movedata(testCaseName);
+			System.out.println(testCaseName);
+		}
+		;
+		System.out.println(testCaseName);
+		//TestData.testCaseIdColNo = testCaseIdColNo;
+		return testCaseName;
+	}
 
 }

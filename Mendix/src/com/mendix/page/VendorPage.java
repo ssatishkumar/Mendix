@@ -648,7 +648,8 @@ public class VendorPage {
 		String[] parts = reqId.split(" ");
 		String Id = parts[2];
 		System.out.println("RequestId is: " + Id);
-		ExcelUtil.excelWrite(Id);
+//		ExcelUtil.excelWrite(Id);
+		ExcelUtil.setCellData_New("TestPlan", "RequestId", Id);
 		System.out.println("Excel write is done");
 		wait.until(ExpectedConditions.elementToBeClickable(btnOK));
 		Sync.waitForSeconds(Constants.WAIT_2);
