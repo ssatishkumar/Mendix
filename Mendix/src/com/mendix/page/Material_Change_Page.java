@@ -49,7 +49,6 @@ public class Material_Change_Page {
 	@FindBy(how=How.XPATH, using="//button[text()='Edit']")
 	WebElement btnEdit;
 	
-	
 	@FindBy(how=How.XPATH, using="//button[text()='Create With Reference']")
 	WebElement btnCreateRef; 
 	

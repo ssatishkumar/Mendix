@@ -53,6 +53,18 @@ public class LoginPage {
 		 
 	}
 	
+	@Test(dataProvider="HeiPort_Login",dataProviderClass=staticProviderClass.class)
+	public boolean login_Vendor(String strUsername,String strPassword){		
+
+		Sync.waitForObject(driver, "Username", txtUsername);		
+		Textbox.click("Username", txtUsername);
+		Textbox.click("Password", txtPassword);
+		Textbox.enterValue("Username", txtUsername, strUsername);
+		Textbox.enterValue("Password", txtPassword, strPassword);
+		return Button.click("Login", btnLogin);
+		 
+	}
+	
 	public static void tasKill() throws IOException {
 		Runtime.getRuntime().exec("taskkill /T /F /IM IEDriverServer.exe");
 		Runtime.getRuntime().exec("taskkill /T /F /IM UFT.exe");

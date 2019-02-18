@@ -51,6 +51,65 @@ public class VendorScript {
 		SharedDriver.pageContainer.vendorPage.getRequestId();
 				
 	}
+	
+	
+	/****************************************************************************************************/	
+	@Test(dataProvider="Vendor_Create_Global_Disable_Bank_and_LocalData",dataProviderClass=staticProviderClass.class)
+	public void Vendor_Create_Fill_In_Data_JDE(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	{
+		/*SharedDriver.pageContainer.vendorPage.disableLocaData();
+		SharedDriver.pageContainer.vendorPage.disableBankData();*/
+		SharedDriver.pageContainer.vendorPage.VendorName(dataMap.get("Name1"));
+		SharedDriver.pageContainer.vendorPage.AddressStreet("Hauptstrasse");//dataMap.get("Street")
+		SharedDriver.pageContainer.vendorPage.AddresHouseNumber("11"); //dataMap.get("House number")
+		SharedDriver.pageContainer.vendorPage.AddresPostalCode("2551"); //dataMap.get("Postal Code")
+		SharedDriver.pageContainer.vendorPage.AddresCity("Enzesfeld-Lindabrunn");
+		SharedDriver.pageContainer.vendorPage.ScrollDown();
+		//'DropDowns
+		SharedDriver.pageContainer.vendorPage.AddresCountry("AT, Austria"); //dataMap.get("Country")
+		SharedDriver.pageContainer.vendorPage.AddresRegion("NOE, Lower Austria");  //dataMap.get("Region")
+		SharedDriver.pageContainer.vendorPage.AddresLanguageKey("EN, English");
+		
+		SharedDriver.pageContainer.vendorPage.AddressCreditInformationNumber("301536819");
+		SharedDriver.pageContainer.vendorPage.AddresIndustryKey("Y001, Trade/Serv/Transport");
+		SharedDriver.pageContainer.vendorPage.AddresCorporateGroup("PR-PACK, PR-Packaging materials");
+		SharedDriver.pageContainer.vendorPage.clickLocalAction_Local();
+		SharedDriver.pageContainer.vendorPage.validateTestCreate();
+		
+		/*SharedDriver.pageContainer.vendorPage.submitGlobalRequestTest();
+		SharedDriver.pageContainer.vendorPage.getRequestId();*/
+				
+	}
+	/****************************************************************************************************/
+	@Test(dataProvider="Vendor_Create_Global_Bank_and_LocalData",dataProviderClass=staticProviderClass.class)
+	public void Vendor_Create_Fill_In_Data_JDE_Bank(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	{
+		
+		SharedDriver.pageContainer.vendorPage.VendorName(dataMap.get("Name1"));
+		SharedDriver.pageContainer.vendorPage.AddressStreet("Hauptstrasse");//dataMap.get("Street")
+		SharedDriver.pageContainer.vendorPage.AddresHouseNumber("11"); //dataMap.get("House number")
+		SharedDriver.pageContainer.vendorPage.AddresPostalCode("2551"); //dataMap.get("Postal Code")
+		SharedDriver.pageContainer.vendorPage.AddresCity("Enzesfeld-Lindabrunn");
+		SharedDriver.pageContainer.vendorPage.ScrollDown();
+		//'DropDowns
+		SharedDriver.pageContainer.vendorPage.AddresCountry("AT, Austria"); //dataMap.get("Country")
+		SharedDriver.pageContainer.vendorPage.AddresRegion("NOE, Lower Austria");  //dataMap.get("Region")
+		SharedDriver.pageContainer.vendorPage.AddresLanguageKey("EN, English");
+		
+		SharedDriver.pageContainer.vendorPage.AddressCreditInformationNumber("301536819");
+		SharedDriver.pageContainer.vendorPage.AddresIndustryKey("Y001, Trade/Serv/Transport");
+		SharedDriver.pageContainer.vendorPage.AddresCorporateGroup("PR-PACK, PR-Packaging materials");
+		SharedDriver.pageContainer.vendorPage.clickLocalAction_Local();
+		SharedDriver.pageContainer.vendorPage.validateTestCreate();
+		
+		/*SharedDriver.pageContainer.vendorPage.submitGlobalRequestTest();
+		SharedDriver.pageContainer.vendorPage.getRequestId();*/
+				
+	}
+	
+	
+	
+	
 
 /****************************************************************************************************/
 	@Test(dataProvider="Vendor_Create_Global_Disable_Bank_and_LocalData",dataProviderClass=staticProviderClass.class)
@@ -220,11 +279,36 @@ public class VendorScript {
 		SharedDriver.pageContainer.vendorPage.AddresIndustryKey("Y001, Trade/Serv/Transport");
 		SharedDriver.pageContainer.vendorPage.AddresCorporateGroup("PR-RAW, PR-Raw Materials");
 		SharedDriver.pageContainer.vendorPage.BtnLocalActions();
-		SharedDriver.pageContainer.vendorPage.validateTestCreate();
-		
+		SharedDriver.pageContainer.vendorPage.validateTestCreate();		
 		SharedDriver.pageContainer.vendorPage.submitGlobalRequestTest();
 		SharedDriver.pageContainer.vendorPage.getRequestId();
 				
 	}
+	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
+	public void Vendor_Extend_Dashboard_Check(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	{
+	SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();
+	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
+	SharedDriver.pageContainer.vendorPage.advancedSearch();
+	SharedDriver.pageContainer.vendorPage.gobalIDSearchGlobal(dataMap.get("GlobalId"));
+	SharedDriver.pageContainer.vendorPage.GetFullVendorData();
+	SharedDriver.pageContainer.vendorPage.clickExtendButton();
+	SharedDriver.pageContainer.vendorPage.clickGlobalDataButton();
+	SharedDriver.pageContainer.vendorPage.clickToConfirm();
+	SharedDriver.pageContainer.vendorPage.clickConfirmExtension();
+	}
+	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
+	public void Happy_Flag_Deletion(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	{
+	SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();
+	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
+	SharedDriver.pageContainer.vendorPage.advancedSearch();
+	SharedDriver.pageContainer.vendorPage.gobalIDSearchGlobal(dataMap.get("GlobalId"));	
+	SharedDriver.pageContainer.vendorPage.clickflagDeletion();
+	SharedDriver.pageContainer.vendorPage.clickOk();
+	}
+	
 }
 

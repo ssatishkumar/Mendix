@@ -5,8 +5,9 @@ public class Constants {
 	public static String EXECUTION_CONFIG_FILE="config/executionConfig.properties";
 	public static String EXCEL_FORMAT=".xlsm";
 	public static String EXCEL_FORMAT_XLSX=".xlsx";
-	public static String MDM_TYPE_MATERIAL="Material";
 	public static String ENV="MDM";
+	public static String MDM_TYPE_MATERIAL="Material";
+	public static String MDM_TYPE_VENDOR="Vendor";
 	public static String WAIT_NUMBER="WAIT_NUMBER";
 	public static String OBJECT_WAIT_TIME="OBJECT_WAIT_TIME";
 	public static String PAGE_LOAD_TIME="PAGE_LOAD_TIME";
@@ -34,6 +35,8 @@ public class Constants {
 	public static String DOWNLOAD_FOLDER = "Downloads";
 	public static String RESOURCES_FOLDER ="Resources";
 	public static String OPCO ="OPCO";
+	public static String Login_Material="MM";
+	public static String Login_Vendor="VM";
 	}
 	
 
