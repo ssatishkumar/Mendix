@@ -59,7 +59,9 @@ public class Vendor_JDE_Script {
 		SharedDriver.pageContainer.vendorPage.clickLocalAction_Local();
 		//		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.submitGlobalRequestTest();
-		SharedDriver.pageContainer.materialPage.getRequestId();
+		SharedDriver.pageContainer.vendorPage.duplicateCheck();
+		SharedDriver.pageContainer.vendorPage.getRequestId_Vendor();
+//		SharedDriver.pageContainer.materialPage.getRequestId_Create();
 
 	}
 

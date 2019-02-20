@@ -62,12 +62,12 @@ public class VendorScript {
 		SharedDriver.pageContainer.vendorPage.VendorName(dataMap.get("Name1"));
 		SharedDriver.pageContainer.vendorPage.AddressStreet("Hauptstrasse");//dataMap.get("Street")
 		SharedDriver.pageContainer.vendorPage.AddresHouseNumber("11"); //dataMap.get("House number")
-		SharedDriver.pageContainer.vendorPage.AddresPostalCode("2551"); //dataMap.get("Postal Code")
+		SharedDriver.pageContainer.vendorPage.AddresPostalCode("255121"); //dataMap.get("Postal Code")
 		SharedDriver.pageContainer.vendorPage.AddresCity("Enzesfeld-Lindabrunn");
 		SharedDriver.pageContainer.vendorPage.ScrollDown();
 		//'DropDowns
-		SharedDriver.pageContainer.vendorPage.AddresCountry("AT, Austria"); //dataMap.get("Country")
-		SharedDriver.pageContainer.vendorPage.AddresRegion("NOE, Lower Austria");  //dataMap.get("Region")
+		SharedDriver.pageContainer.vendorPage.AddresCountry("SG, Singapore"); //dataMap.get("Country")
+		SharedDriver.pageContainer.vendorPage.AddresRegion("SG, Singapore");  //dataMap.get("Region")
 		SharedDriver.pageContainer.vendorPage.AddresLanguageKey("EN, English");
 		
 		SharedDriver.pageContainer.vendorPage.AddressCreditInformationNumber("301536819");
@@ -218,7 +218,7 @@ public class VendorScript {
 		SharedDriver.pageContainer.vendorPage.reqIdSearchGlobal(dataMap.get("RequestId"));
 		SharedDriver.pageContainer.vendorPage.getGlobalId();
 		SharedDriver.pageContainer.processInfoPage.browserClose();	
-//		SharedDriver.pageContainer.materialApprovalPage.launchUFT();
+		SharedDriver.pageContainer.materialApprovalPage.launch_UFT_JDE();
 	}
 /****************************************************************************************************/	
 	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
@@ -292,11 +292,13 @@ public class VendorScript {
 	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
 	SharedDriver.pageContainer.vendorPage.advancedSearch();
 	SharedDriver.pageContainer.vendorPage.gobalIDSearchGlobal(dataMap.get("GlobalId"));
-	SharedDriver.pageContainer.vendorPage.GetFullVendorData();
+	SharedDriver.pageContainer.vendorPage.globalSearch(dataMap.get("GlobalId"));
+	SharedDriver.pageContainer.vendorPage.GetFullVendorData();	
 	SharedDriver.pageContainer.vendorPage.clickExtendButton();
 	SharedDriver.pageContainer.vendorPage.clickGlobalDataButton();
 	SharedDriver.pageContainer.vendorPage.clickToConfirm();
 	SharedDriver.pageContainer.vendorPage.clickConfirmExtension();
+	SharedDriver.pageContainer.vendorPage.clickOkToHandlePopup();
 	}
 	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
 	public void Happy_Flag_Deletion(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
@@ -308,6 +310,32 @@ public class VendorScript {
 	SharedDriver.pageContainer.vendorPage.gobalIDSearchGlobal(dataMap.get("GlobalId"));	
 	SharedDriver.pageContainer.vendorPage.clickflagDeletion();
 	SharedDriver.pageContainer.vendorPage.clickOk();
+	}
+	@Test(dataProvider="Process_Information_Check",dataProviderClass=staticProviderClass.class)
+	public void Vendor_Global_LockCheck(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
+	{
+	/*SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();
+	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
+	SharedDriver.pageContainer.vendorPage.advancedSearch();
+	SharedDriver.pageContainer.vendorPage.globalSearch(dataMap.get("GlobalId"));
+	SharedDriver.pageContainer.vendorPage.GetFullVendorData();
+	SharedDriver.pageContainer.vendorPage.getGlobalIdNew();
+	SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();*/
+	SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();
+	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
+	SharedDriver.pageContainer.vendorPage.advancedSearch();
+	SharedDriver.pageContainer.vendorPage.globalSearch(dataMap.get("GlobalId"));
+	SharedDriver.pageContainer.vendorPage.checkGlobalIdYes();
+	SharedDriver.pageContainer.homePage.navigateToWorkflow();
+	SharedDriver.pageContainer.vendorPage.switchToMDMPortal();
+	SharedDriver.pageContainer.vendorPage.navigateToDashboard();
+	SharedDriver.pageContainer.vendorPage.advancedSearch();
+	SharedDriver.pageContainer.vendorPage.gobalIDSearchGlobal(dataMap.get("GlobalId"));
+	SharedDriver.pageContainer.vendorPage.checkGlobalIdYes();
+	
 	}
 	
 }

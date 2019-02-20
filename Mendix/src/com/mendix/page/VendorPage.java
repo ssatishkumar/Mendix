@@ -37,6 +37,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 import com.mendix.tool.Button;
 import com.mendix.tool.Constants;
 import com.mendix.tool.SharedDriver;
@@ -359,12 +360,34 @@ public class VendorPage {
 		Sync.waitUntilObjectDisappears(driver, "Waiting of Create page to Load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 		Sync.waitForObject(driver, GetFullVendorData);
 		Button.click("GetFullVendorData", GetFullVendorData);
-		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitUntilObjectDisappears(driver, "Waiting of Create page to Load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
-		Button.click("Click on OK", btnOK1);
+		
+		/*String globalLockState=driver.findElement(By.xpath("//*[text()='Global Lock']/../../../../../../table[2]/tbody[1]/tr[1]/td[1]/div")).getText();
+		System.out.println(globalLockState);
+		if(globalLockState.equalsIgnoreCase("NO")){
+			Button.click("Select EDit button", EditGlobalData);
+			Button.click("Click EDit button", btnEdit);    
+
+		}
+
+		else if(globalLockState.equalsIgnoreCase("Yes")){
+
+		//String globalLockStateNew=driver.findElement(By.xpath("//*[text()='Global Lock']/../../../../../../table[2]/tbody[1]/tr[1]/td[1]/div")).getText();
+			System.out.println(globalLockState);
+
+		}
+
+
+		String globalId=driver.findElement(By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div")).getText();
+		System.out.println(globalId);
+		/*ExcelUtil.excelWriteGlobalId(globalId);*/
+		//Button.click("Select EDit button", EditGlobalData);
+		//Button.click("Click EDit button", btnEdit);
+		/*Button.click("Click on OK", btnOK1);
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Button.click("Click on OK", btnOK);
-		Sync.waitForSeconds(Constants.WAIT_1);
+		Sync.waitForSeconds(Constants.WAIT_1);*/
 	
 	}
 		
@@ -384,7 +407,7 @@ public class VendorPage {
 	public boolean disableLocaData() 
 	{
 
-		Sync.waitForSeconds(Constants.WAIT_6);
+		Sync.waitForSeconds(Constants.WAIT_10);
 		Sync.waitUntilObjectDisappears(driver, "Waiting of Create page to Load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 		Sync.waitForObject(driver, textLocalData);
 		Button.click("Local Data", textLocalData);
@@ -476,7 +499,7 @@ public class VendorPage {
 		Select Country= new Select(textCountry);
 	//	Country.selectByVisibleText(strValue);
 //		 Sync.waitForSeconds(Constants.WAIT_1);
-		 List <WebElement> elementCount = Country.getOptions();
+		 /*List <WebElement> elementCount = Country.getOptions();
 		 int iSize = elementCount.size();
 	//	 System.out.println(iSize);
 		 for(int i =0; i<iSize ; i++)
@@ -488,7 +511,8 @@ public class VendorPage {
 			 System.out.println(i);
 			 break;
 			 }
-		 }
+		 }*/
+		Country.selectByVisibleText(strValue);
 	}
 	
 	public void AddresRegion(String strValue)
@@ -688,7 +712,8 @@ public class VendorPage {
 		String[] parts = reqId.split(" ");
 		String Id = parts[2];
 		System.out.println("RequestId is: " + Id);
-		ExcelUtil.excelWrite(Id);
+//		ExcelUtil.excelWrite(Id);
+		ExcelUtil.setCellData_New("TestPlan","RequestId", Id);
 		System.out.println("Excel write is done");
 		wait.until(ExpectedConditions.elementToBeClickable(btnOK));
 		Sync.waitForSeconds(Constants.WAIT_2);
@@ -755,6 +780,7 @@ public  String getRequestId_Draft() throws InterruptedException, FileNotFoundExc
 	
 /****************************************************************************************************/
 	public void scrolltoGlobalSearch() {
+		Sync.waitForSeconds("5");
 		JavascriptExecutor js;
 		js = (JavascriptExecutor) driver;
 		js.executeScript("$(\".mx-layoutcontainer-wrapper.mx-scrollcontainer-wrapper\").animate({ scrollBottom: \"100px\" })");
@@ -785,65 +811,13 @@ public  String getRequestId_Draft() throws InterruptedException, FileNotFoundExc
 		Sync.waitForObject(driver, "Wait for Global Vendor Id", driver.findElement(By.xpath("//*[text()='Global Vendor ID']/../../../../../../table[2]/tbody/tr/td[4]/div")));
 		String globalId=driver.findElement(By.xpath("//*[text()='Global Vendor ID']/../../../../../../table[2]/tbody/tr/td[4]/div")).getText();
 		System.out.println(globalId);
-		ExcelUtil.excelWriteGlobalId(globalId);;
+//		ExcelUtil.excelWriteGlobalId(globalId);
+		ExcelUtil.setCellData_New_GlobalId("TestPlan", "Global_ID", globalId);
 		return globalId;
 	}
 
 /****************************************************************************************************/
-	public void duplicateCheck() {
-		try {
-						
-			WebElement waitElement = null;
-			FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofMinutes(3))
-			        .pollingEvery(Duration.ofSeconds(600))
-			        .ignoring(NoSuchElementException.class)
-			        .ignoring(TimeoutException.class);
-			 
-		
-			//First checking to see if the loading indicator is found
-			// we catch and throw no exception here in case they aren't ignored
-			try {
-			  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
-			   public WebElement apply(WebDriver driver) {
-			      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
-			   }
-			 });
-			    } catch (Exception e) {
-			   }
-			 
-			//checking if loading indicator was found and if so we wait for it to
-			//disappear
-			  if (waitElement != null) {
-			      WebDriverWait wait = new WebDriverWait(driver, 120);
-			      wait.until(ExpectedConditions.visibilityOfElementLocated(
-			    		  By.xpath(".//*[text()='Open Record']"))
-			            );
-			        }
-
-			driver.manage().window().setPosition(new Point(-2000, 0)) ;
-			driver.findElement(By.xpath(".//*[text()='Open Record']")).sendKeys(Keys.TAB);
-			driver.findElement(By.xpath(".//*[text()='Export to Excel']")).sendKeys(Keys.TAB);
-			driver.findElement(By.xpath("//*[text()='Confirm and Approve']")).sendKeys(Keys.TAB);
-			driver.findElement(By.xpath("//*[text()='Confirm and Approve']")).sendKeys(Keys.RETURN);
-			driver.findElement(By.xpath("//*[text()='Proceed']")).click();
-			Sync.waitForSeconds(Constants.WAIT_3);
-
-
-			driver.manage().window().maximize();
-			Actions actions = new Actions(driver);
-			actions.moveToElement(btnMsgReqIdOk);
-			actions.perform();
-
-			Button.click("Click Ok Button", btnMsgReqIdOk);
-
-			
-		}
-		catch(Exception e) {
-			System.err.println(e.getMessage());
-
-
-		}
-	}
+	
 	
 	public void RejectGDA() throws InterruptedException, AWTException {
 
@@ -1129,10 +1103,159 @@ public boolean discardLocalButtonClick() throws InterruptedException
 			return Button.click("Click Button To ok", btnok);
 		}
 	}
-	
+	public void globalSearch(String strValue) throws InterruptedException {
+		//Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_3);
+		Button.click("Click Search button", btnReqIdEnter);
+
+		// Sync.waitForObject(driver, txtboxReqIdEnter);
+
+		//Button.click("Click Search button", btnReqIdEnter);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(
+	    		  By.xpath("//*[text()='Global ID']/../../td[4]/div/input")));
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		//Sync.waitForSeconds(Constants.WAIT_5);
+
+		//Sync.waitForObject(driver, txtboxGlobalIdEnter);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+
+
+		Textbox.clear("Clear TextBox Value", txtBoxGlobalId);
+		Textbox.enterValue("Enter TextBox Value", txtBoxGlobalId, strValue);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Button.click("Click Search button", btnReqIdEnter);
+		Sync.waitForSeconds(Constants.WAIT_5); 
+		}  
+
+ public  String getGlobalIdNew() throws FileNotFoundException, IOException {
+		Sync.waitForSeconds(Constants.WAIT_10);
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofMinutes(3))
+		        .pollingEvery(Duration.ofSeconds(600))
+		        .ignoring(NoSuchElementException.class)
+		        .ignoring(TimeoutException.class);
+
+		String globalLockState=driver.findElement(By.xpath("//*[text()='Global Locked']/../../../../../../table[2]/tbody[1]/tr[1]/td[1]/div")).getText();
+		System.out.println(globalLockState);
+		if(globalLockState.equalsIgnoreCase("NO")){
+			Button.click("Select EDit button", EditGlobalData);
+			Button.click("Click EDit button", btnEdit);    
+
+		}
+
+		else if(globalLockState.equalsIgnoreCase("Yes")){
+
+		//String globalLockStateNew=driver.findElement(By.xpath("//*[text()='Global Lock']/../../../../../../table[2]/tbody[1]/tr[1]/td[1]/div")).getText();
+			System.out.println(globalLockState);
+
+		}
+
+
+		String globalId=driver.findElement(By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div")).getText();
+		System.out.println(globalId);
+		/*ExcelUtil.excelWriteGlobalId(globalId);*/
+		return globalId;
 	}
-	
-	
+ public  void checkGlobalIdYes() throws FileNotFoundException, IOException {
+	 Sync.waitForSeconds(Constants.WAIT_10);
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofMinutes(3))
+		        .pollingEvery(Duration.ofSeconds(600))
+		        .ignoring(NoSuchElementException.class)
+		        .ignoring(TimeoutException.class);
+
+		String globalLockState=driver.findElement(By.xpath("//*[text()='Global Locked']/../../../../../../table[2]/tbody[1]/tr[1]/td[1]/div")).getText();
+		System.out.println(globalLockState);
+		if(globalLockState.equalsIgnoreCase("Yes")){
+			driver.quit();
+
+		}
+
+		
+
+ }
+ public boolean clickOkToHandlePopup()
+	{
+	Sync.waitForSeconds(Constants.WAIT_5);
+	WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+	return Button.jsclick("Click on Popup", popUp, driver);
+	//Sync.waitForSeconds(Constants.WAIT_1);
+// Button.jsclick("Click ok on info Popup", btnOkay, driver);
+	}
+ 
+ public void duplicateCheck() {
+		try {
+//			Sync.waitUntilObjectDisappears(driver, "Wait for Duplicate check", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
+						
+			WebElement waitElement = null;
+			FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+			        .withTimeout(Duration.ofMinutes(3))
+			        .pollingEvery(Duration.ofSeconds(600))
+			        .ignoring(NoSuchElementException.class)
+			        .ignoring(TimeoutException.class);
+			 
+			//First checking to see if the loading indicator is found
+			// we catch and throw no exception here in case they aren't ignored
+			try {
+			  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+			   public WebElement apply(WebDriver driver) {
+			      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+			   }
+			 });
+			    } catch (Exception e) {
+			   }
+			 
+			//checking if loading indicator was found and if so we wait for it to
+			//disappear
+			  if (waitElement != null) {
+			      WebDriverWait wait = new WebDriverWait(driver, 120);
+			      wait.until(ExpectedConditions.visibilityOfElementLocated(
+			    		  By.xpath(".//*[text()='Open Record']"))
+			            );
+			        }
+
+			driver.manage().window().setPosition(new Point(-2000, 0)) ;
+			driver.findElement(By.xpath(".//*[text()='Open Record']")).sendKeys(Keys.TAB);
+			driver.findElement(By.xpath(".//*[text()='Extend Selected']")).sendKeys(Keys.TAB);
+			driver.findElement(By.xpath("//*[text()='Export to Excel']")).sendKeys(Keys.TAB);
+			driver.findElement(By.xpath("//*[text()='My record is not a duplicate! Submit.']")).sendKeys(Keys.RETURN);
+			driver.findElement(By.xpath("//*[text()='Proceed']")).click();
+			Sync.waitForSeconds(Constants.WAIT_3);
+
+
+			driver.manage().window().maximize();
+			Actions actions = new Actions(driver);
+			actions.moveToElement(btnMsgReqIdOk);
+			actions.perform();
+
+			Button.click("Click Ok Button", btnMsgReqIdOk);
+
+			/*try
+			{
+				if(btnMsgReqIdOkdraft.isEnabled())
+				{
+					Button.click("Click Ok Button", btnMsgReqIdOkdraft);
+					System.out.println("Button is Clicked");
+				}
+
+			}
+			catch(Exception e) {
+				System.err.println(e.getMessage());
+
+
+			}*/
+
+		}
+		catch(Exception e) {
+			System.err.println(e.getMessage());
+
+
+		}
+	}
+}
 
 
 

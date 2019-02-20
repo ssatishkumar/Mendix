@@ -82,7 +82,8 @@ public class MaterialJDEScript {
 		SharedDriver.pageContainer.materialNavPage.clickSaveButton();
 		SharedDriver.pageContainer.materialNavPage.clickLocalAction();
 		SharedDriver.pageContainer.materialNavPage.submitGlobalRequestTest();
-		SharedDriver.pageContainer.materialPage.getRequestId();
+//		SharedDriver.pageContainer.materialPage.getRequestId();
+		SharedDriver.pageContainer.materialPage.getRequestId_Create();
 	}
 
 	@Test(dataProvider="CreateMaterial_Fill_In",dataProviderClass=staticProviderClass.class)
@@ -193,8 +194,10 @@ public class MaterialJDEScript {
 //		SharedDriver.pageContainer.materialPage.clickLocalAction();
 		SharedDriver.pageContainer.materialPage.submitBtnClick_Local();
 //		SharedDriver.pageContainer.materialPage.getRequestId_Create_Local();
-		SharedDriver.pageContainer.materialPage.getRequestId();
-		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
+		SharedDriver.pageContainer.materialApprovalPage.duplicateCheck();
+		SharedDriver.pageContainer.materialPage.getRequestId_Create();
+		SharedDriver.pageContainer.materialApprovalPage.okbuttonClick();
+//		SharedDriver.pageContainer.materialApprovalPage.submitRequestOkBtnClick();
 
 	}
 }

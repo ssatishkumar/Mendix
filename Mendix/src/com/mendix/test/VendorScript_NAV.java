@@ -32,6 +32,7 @@ public class VendorScript_NAV {
 	public void Vendor_Create_Fill_In_Data_Global_Local_NAV(Map<String,String> dataMap) throws InterruptedException, FileNotFoundException, IOException, AWTException 
 	{
 		SharedDriver.pageContainer.vendorPageNAV.disableBankData_NAV();
+//		SharedDriver.pageContainer.vendorPage.disableBankData();
 		SharedDriver.pageContainer.vendorPageNAV.VendorName(dataMap.get("Name1"));
 		SharedDriver.pageContainer.vendorPageNAV.AddressStreet("kite");//dataMap.get("Street")
 		SharedDriver.pageContainer.vendorPageNAV.AddresHouseNumber("11"); //dataMap.get("House number")

@@ -79,7 +79,7 @@ public class DataProviderUtil {
 		
 		@DataProvider(name="Vendor_Create_Global_Bank_and_LocalData",parallel=false)
 		public static Iterator<Object[]> VendorBankPage(){
-			Iterator<Object[]> testData=ExcelUtil.getTestData("input/data/Global_"+Constants.MDM_TYPE_VENDOR+"_Data_JDE"+Constants.EXCEL_FORMAT_XLSX, "Y001");
+			Iterator<Object[]> testData=ExcelUtil.getTestData("input/data/Global_"+Constants.MDM_TYPE_VENDOR+"_Data"+Constants.EXCEL_FORMAT_XLSX, "Y001");
 			return testData;
 		}
 

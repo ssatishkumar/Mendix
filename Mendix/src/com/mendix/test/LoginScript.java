@@ -70,13 +70,18 @@ public class LoginScript {
 		String OpL=Opco.length() < 2 ? Opco : Opco.substring(0, 2);
 		SharedDriver.pageContainer.loginPage.login("MDMM_"+OpL+"04_LDR","Heineken01");
 	}
-	
-	@Test
-	public void loginAsLDRVendor(){
-		ResultUtil.reporter.startTest("Login As LDR for Vendor");
+
+	@Test(dataProvider="HeiPort_Login",dataProviderClass=staticProviderClass.class)
+	public void loginAsLDRVendor(Map<String,String> dataMap){
+		/*ResultUtil.reporter.startTest("Login As LDR for Vendor");
 		//SharedDriver.createDriver();
-		SharedDriver.pageContainer.loginPage.login_Vendor("MDVM_"+HelperUtil.executionConfigMap.get(Constants.OPCO)+"01_LDR","Heineken01");
-		
+		SharedDriver.pageContainer.loginPage.login_Vendor("MDVM_"+HelperUtil.executionConfigMap.get(Constants.OPCO)+"01_LDR","Heineken01");*/
+		ResultUtil.reporter.startTest("Login As LDR");
+		String opcoLogin= dataMap.get("OpCo");
+		String Opco=opcoLogin.replaceAll("\\d","");
+		String OpL=Opco.length() < 2 ? Opco : Opco.substring(0, 2);
+		SharedDriver.pageContainer.loginPage.login("MDVM_"+OpL+"04_LDR","Heineken01");
+
 	}
 
 	@Test(dataProvider="HeiPort_Login",dataProviderClass=staticProviderClass.class)
@@ -101,7 +106,7 @@ public class LoginScript {
 		String opcoLogin= dataMap.get("OpCo");
 		String Opco=opcoLogin.replaceAll("\\d","");
 		String OpL=Opco.length() < 2 ? Opco : Opco.substring(0, 2);
-		SharedDriver.pageContainer.loginPage.login("MDMM_"+OpL+"01_LDS","Heineken01");
+		SharedDriver.pageContainer.loginPage.login("MDMM_"+OpL+"04_LDS","Heineken01");
 	}
 
 	@Test
@@ -125,15 +130,18 @@ public class LoginScript {
 		Assert.assertTrue(SharedDriver.pageContainer.loginPage.login("MDM_GDA", "Heineken01"));		
 
 	}
-	
-	@Test
-	public void loginAsLDSVendor(){
+
+	@Test(dataProvider="HeiPort_Login",dataProviderClass=staticProviderClass.class)
+	public void loginAsLDSVendor(Map<String,String> dataMap){
 		ResultUtil.reporter.startTest("Login As LDS for Vendor Approval");
 		//SharedDriver.createDriver();
-		SharedDriver.pageContainer.loginPage.login_Vendor("MDVM_"+HelperUtil.executionConfigMap.get(Constants.OPCO)+"01_LDS","Heineken01");
-		
+		//		SharedDriver.pageContainer.loginPage.login_Vendor("MDVM_"+HelperUtil.executionConfigMap.get(Constants.OPCO)+"01_LDS","Heineken01");
+		String opcoLogin= dataMap.get("OpCo");
+		String Opco=opcoLogin.replaceAll("\\d","");
+		String OpL=Opco.length() < 2 ? Opco : Opco.substring(0, 2);
+		SharedDriver.pageContainer.loginPage.login("MDVM_"+OpL+"04_LDS","Heineken01");
 	}
-	
+
 	/**
 	 * Sets the up.
 	 *
