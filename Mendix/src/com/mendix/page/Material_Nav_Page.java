@@ -209,7 +209,8 @@ public class Material_Nav_Page {
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitUntilObjectDisappears(driver, "Wait for Save button", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath("(//*[text()='Add'])[2]/../button[2]/span")));
-		Button.jsclick("Click Edit Finance Button", driver.findElement(By.xpath("(//*[text()='Add'])[2]/../button[2]/span")), driver);
+//		Button.jsclick("Click Edit Finance Button", driver.findElement(By.xpath("(//*[text()='Add'])[2]/../button[2]/span")), driver);
+		Button.jsclick("Click Edit Finance Button", driver.findElement(By.xpath("(//*[text()='Edit'])[6]")), driver);
 //		driver.findElement(By.xpath("(//*[text()='Add'])[2]/../button[2]/span")).click();
 		/*Sync.waitForSeconds(Constants.WAIT_3);
 		Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
@@ -265,7 +266,7 @@ public class Material_Nav_Page {
 	
 	public void submitGlobalRequestTest() throws InterruptedException {
 
-//		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.WaitForPageLoad(driver);
 //		Sync.waitForObject(driver, "Wait for Submit Global Request", driver.findElement(By.xpath("//*[text()='Local Actions:']/../div[2]/div[2]/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div[1]/div/button/span")));
 		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath("//*[text()='Local Actions:']/../div[2]/div[2]/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div[1]/div/button/span")));

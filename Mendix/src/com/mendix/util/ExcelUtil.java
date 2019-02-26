@@ -325,6 +325,67 @@ public class ExcelUtil {
 		}
 		//        return true;
 	}
+	
+	public static void setCellData_New_GlobalId(String sheetName, String colName, String value)
+	{
+		List<Object[]> data = new ArrayList<Object[]>();
+		try
+		{
+			FileInputStream fis = new FileInputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			int col_Num = 0;
+			XSSFSheet sheet = workbook.getSheet(sheetName);
+
+			XSSFRow row = sheet.getRow(getRowNum("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX, "TestPlan", value));
+			for (int i = 0; i < row.getLastCellNum(); i++) {
+				if (row.getCell(i).getStringCellValue().trim().equals(colName))
+				{
+					col_Num = i;
+				}
+			}
+
+			//			sheet.autoSizeColumn(col_Num);
+			//			row = sheet.getRow(getRowNum("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX, "TestPlan", value) - 1);
+			//			if(row==null)
+			//				row = sheet.createRow(rowNum - 1);
+			Iterator<Row> rowIterator = sheet.rowIterator();
+			Row firstRow=rowIterator.next();
+
+
+			testCaseName = getTestCaseName("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX, sheetName);
+			Map<String, String> headerRow = getColumnNames(firstRow);
+			while(rowIterator.hasNext()){
+				Iterator<Cell> cellIterator=rowIterator.next().cellIterator();
+				Map<String,String> rowMap=new LinkedHashMap<String, String>();
+				for(Entry<?, ?> entry:headerRow.entrySet()){
+					String strColumnName=entry.getKey().toString();
+					String strValue="";
+					try{
+						Cell cell=cellIterator.next();
+						if(cell!=null){strValue=cell.toString();
+						rowMap.put(strColumnName, strValue.trim());
+							
+						if(strColumnName.equalsIgnoreCase("Global_ID")) {
+							if(rowMap.get("Test_Case").equalsIgnoreCase(testCaseName)){
+							cell.setCellValue(value);
+							}
+						}
+						}
+					}catch(Exception e){}
+				}
+
+				FileOutputStream fos = new FileOutputStream("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX);
+				workbook.write(fos);
+				fos.close();
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			//            return  false;
+		}
+		//        return true;
+	}
 
 	public static int getRowNum(String fileName, String sheetName,
 			String cellVal) {

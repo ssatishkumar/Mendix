@@ -17,6 +17,7 @@ public class Constants {
 	public static String WAIT_3="WAIT_3";
 	public static String WAIT_5="WAIT_5";
 	public static String WAIT_6="WAIT_6";
+	public static String WAIT_10="WAIT_10";
 	public static String URL="URL";
 	public static String BROWSER="BROWSER";
 	public static String STATUS_PASS="PASS";

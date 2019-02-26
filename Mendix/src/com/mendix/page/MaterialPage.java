@@ -570,7 +570,7 @@ public class MaterialPage {
 		String Id = parts[2];
 		System.out.println("RequestId is: " + Id);
 //		ExcelUtil.excelWrite(Id);
-		ExcelUtil.setCellData_New("input/Mendix_TestPlan\"+Constants.EXCEL_FORMAT_XLSX", "Test_Case",  Id);
+		ExcelUtil.setCellData_New("input/Mendix_TestPlan"+Constants.EXCEL_FORMAT_XLSX, "Test_Case",  Id);
 		System.out.println("Excel write is done");
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForElementToBeClickable(driver, btnOK);

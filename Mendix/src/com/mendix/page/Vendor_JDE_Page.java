@@ -225,8 +225,10 @@ public class Vendor_JDE_Page {
 		Sync.waitForSeconds(Constants.WAIT_5);
 		driver.switchTo().window("Application");
 		WebElement element2=driver.findElement(By.xpath("//*[text()='Adjustment Schedule']"));
+		Select option= new Select(driver.findElement(By.xpath("//*[text()='Adjustment Schedule']/../div/div/select")));
 		element2.click();
-		element2.sendKeys(Keys.ARROW_DOWN);
+		option.selectByVisibleText("PQ, P*Q Contracts");
+//		element2.sendKeys(Keys.ARROW_DOWN);
 
 
 	}
@@ -426,8 +428,9 @@ public class Vendor_JDE_Page {
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Select option= new Select(selectMvmtTypeInvoicePayment1);
+		option.selectByVisibleText("811, Sales / Purchases");
 
-		List <WebElement> elementCount = option.getOptions();
+	/*	List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -438,7 +441,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 
 	}
@@ -447,8 +450,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Select option= new Select(selectMvmtTypeInvoicePayment3);
+		option.selectByVisibleText("902, Proceeds & Receipts");
 
-		List <WebElement> elementCount = option.getOptions();
+	/*	List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -459,7 +463,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 
 	}
@@ -468,8 +472,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectABAmountCurrency);
+		option.selectByVisibleText("SGD, Singapore Dollar");
 
-		List <WebElement> elementCount = option.getOptions();
+		/*List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -480,7 +485,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 
 	}
@@ -490,8 +495,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectPaymentTerms);
+		option.selectByVisibleText("V000, Pay immediately");
 
-		List <WebElement> elementCount = option.getOptions();
+	/*	List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -502,7 +508,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 
 	}
@@ -511,8 +517,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectTaxRateArea);
+		option.selectByVisibleText("SGGST7, Singapore GST 7%");
 
-		List <WebElement> elementCount = option.getOptions();
+		/*List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -523,7 +530,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 
 	}
@@ -532,8 +539,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectPaymentCreation);
+		option.selectByVisibleText("N, By Supplier");
 
-		List <WebElement> elementCount = option.getOptions();
+	/*	List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -544,7 +552,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 
 	}
@@ -553,8 +561,8 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectHoldPayment);
-
-		List <WebElement> elementCount = option.getOptions();
+		option.selectByVisibleText("N, No");
+	/*	List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -565,7 +573,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 
 	}
@@ -574,8 +582,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectGlClass);
+		option.selectByVisibleText("P001, A/P Trade 3 Party Supplier");
 
-		List <WebElement> elementCount = option.getOptions();
+	/*	List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -586,7 +595,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 
 	}
 
@@ -594,8 +603,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectMvmtTypeInvoicePayment2);
+		option.selectByVisibleText("808, Other non cash items");
 
-		List <WebElement> elementCount = option.getOptions();
+	/*	List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -606,7 +616,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 		/*Sync.waitForObjectFluent(driver, selectSendMethod);
 		Select selectSendMethoddropDown= new Select(selectSendMethod);
 		selectSendMethoddropDown.selectByVisibleText("3, Email");*/
@@ -617,8 +627,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectMvmtTypeInvoicePayment4);
+		option.selectByVisibleText("903, Proceeds & Receipts");
 
-		List <WebElement> elementCount = option.getOptions();
+		/*List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -629,7 +640,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 		/*Sync.waitForObjectFluent(driver, selectSendMethod);
 		Select selectSendMethoddropDown= new Select(selectSendMethod);
 		selectSendMethoddropDown.selectByVisibleText("3, Email");*/
@@ -640,8 +651,9 @@ public class Vendor_JDE_Page {
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectDefaultCurrency);
+		option.selectByVisibleText("SGD, Singapore Dollar");
 
-		List <WebElement> elementCount = option.getOptions();
+		/*List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -652,15 +664,16 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 	}
 
 	public void selectTaxExplCode()
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectTaxExplCode);
+		option.selectByVisibleText("VS, VAT - Standard Rated Supplies");
 
-		List <WebElement> elementCount = option.getOptions();
+		/*List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -671,14 +684,15 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 	}
 	public void selectPaymentMethods()
 	{
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Select option= new Select(selectPaymentMethods);
+		option.selectByVisibleText("C, Check Payment");
 
-		List <WebElement> elementCount = option.getOptions();
+		/*List <WebElement> elementCount = option.getOptions();
 		int iSize = elementCount.size();
 
 		for(int i =0; i<iSize ; i++)
@@ -689,7 +703,7 @@ public class Vendor_JDE_Page {
 				option.selectByIndex(i);
 				break;
 			}
-		}
+		}*/
 	}
 
 	public void selectBankBearer()

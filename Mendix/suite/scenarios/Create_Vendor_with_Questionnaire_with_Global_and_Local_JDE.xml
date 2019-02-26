@@ -7,7 +7,7 @@
 				<methods>
 					<include name="tasKill" />
 					<include name="openBrowser" />
-					<include name="loginAsVendorLDR" />
+					<include name="loginAsLDRVendor" />
 				</methods>
 			</class>
 		</classes>
@@ -34,28 +34,39 @@
 		<classes>
 			<class name="com.mendix.test.Vendor_JDE_Script">
 				<methods>
-					<include name="Vendor_Create_Fill_In_Data_JDE_Local_Purchasing" />
-					<include name="Vendor_Create_Fill_In_Data_JDE_Local_Finance" />
+					<include
+						name="Vendor_Create_Fill_In_Data_JDE_Local_Purchasing" />
+					<include
+						name="Vendor_Create_Fill_In_Data_JDE_Local_Finance" />
 				</methods>
 			</class>
 		</classes>
 	</test>
-	<test name="HeiPort_Login_LDR_submit">
+	<test name="Process_Information_Check_LDS">
+		<classes>
+			<class name="com.mendix.test.MaterialScript">
+				<methods>
+					<include name="Process_Information_Check" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="HeiPort_Login_LDS">
 		<classes>
 			<class name="com.mendix.test.LoginScript">
 				<methods>
 					<include name="openBrowser" />
-					<include name="loginAsLDR" />
+					<include name="loginAsLDSVendor" />
 				</methods>
 			</class>
 		</classes>
 	</test>
-	<test name="Material_Create_Fill_in_Data_Save_as_Draft_Submit">
+	<test name="Vendor_Create_Review_Local_Data_Approve_LDS">
 		<classes>
-			<class name="com.mendix.test.MaterialScript">
+			<class name="com.mendix.test.VendorScript_NAV">
 				<methods>
-					<include
-						name="Material_Create_Fill_in_Data_Save_as_Draft_Submit" />
+					<include name="Vendor_Create_Review_Local_Data_Approve_LDS" />
 				</methods>
 			</class>
 		</classes>
@@ -85,6 +96,34 @@
 				<methods>
 					<include
 						name="Material_Create_Review_Global_Data_Approve_GDA" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Process_Information_Chec_Approved">
+		<classes>
+			<class name="com.mendix.test.VendorScript">
+				<methods>
+					<include name="Process_Information_Check" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="HeiPort_Login_LDR_2">
+		<classes>
+			<class name="com.mendix.test.LoginScript">
+				<methods>
+					<include name="openBrowser" />
+					<include name="loginAsLDRVendor" />
+				</methods>
+			</class>
+		</classes>
+	</test> 
+	<test name="Vendor_Create_Syndication_Check">
+		<classes>
+			<class name="com.mendix.test.VendorScript">
+				<methods>
+					<include name="Vendor_Create_Syndication_Check" />
 				</methods>
 			</class>
 		</classes>

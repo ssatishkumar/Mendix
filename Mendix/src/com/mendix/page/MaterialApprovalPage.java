@@ -193,7 +193,7 @@ public class MaterialApprovalPage {
 		return Button.jsclick("Click Approval Button", btnGDAApproval, driver);
 	}
 
-public boolean rejectBtnClick()
+        public boolean rejectBtnClick()
 	{
 		Sync.waitForSeconds(Constants.WAIT_2);
 		Sync.waitUntilObjectDisappears(driver, "Wait My tasks to load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
@@ -438,9 +438,11 @@ public boolean rejectBtnClick()
 
 	public  void launchUFT() throws IOException {
 		Runtime.getRuntime().exec("C:\\Users\\IBM_ADMIN\\git\\MDM_TEST\\MDM_POC\\AutoIt UFT Launch\\UFT.exe");
-
-	}
-
+        }
+	
+	public  void launch_UFT_JDE() throws IOException {
+		Runtime.getRuntime().exec("C:\\Users\\SatishKumarSundaramo\\git\\Mendix_New\\Mendix\\AutoIt_UFT_Launch\\JDE.exe");
+        }
 
 	public void duplicateCheck() {
 		try {
@@ -513,45 +515,88 @@ public boolean rejectBtnClick()
 	}
 	
 	public void okbuttonClick() {
+
 		
-      try {
-    	  WebElement waitElement = null;
-  		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
-  		        .withTimeout(Duration.ofMinutes(3))
-  		        .pollingEvery(Duration.ofSeconds(600))
-  		        .ignoring(NoSuchElementException.class)
-  		        .ignoring(TimeoutException.class);
-  		 
-  		//First checking to see if the loading indicator is found
-  		// we catch and throw no exception here in case they aren't ignored
-  		try {
-  		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
-  		   public WebElement apply(WebDriver driver) {
-  		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
-  		   }
-  		 });
-  		    } catch (Exception e) {
-  		   }
-  		 
-  		//checking if loading indicator was found and if so we wait for it to
-  		//disappear
-  		  if (waitElement != null) {
-  		      WebDriverWait wait = new WebDriverWait(driver, 60);
-  		      wait.until(ExpectedConditions.visibilityOfElementLocated(
-  		    		  By.cssSelector("div[class='modal-body mx-dialog-body']"))
-  		            );
-  		        }
-		if(btnMsgClose.isEnabled())
-		{
-			Button.click("Click close Button", btnMsgClose);
-			System.out.println("Button is Clicked");
-			Button.click("Click Ok Button", btnMsgReqIdOk);
+
+	      try {
+
+	    	  WebElement waitElement = null;
+
+	  		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+
+	  		        .withTimeout(Duration.ofMinutes(3))
+
+	  		        .pollingEvery(Duration.ofSeconds(600))
+
+	  		        .ignoring(NoSuchElementException.class)
+
+	  		        .ignoring(TimeoutException.class);
+
+	  		 
+
+	  		//First checking to see if the loading indicator is found
+
+	  		// we catch and throw no exception here in case they aren't ignored
+
+	  		try {
+
+	  		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+
+	  		   public WebElement apply(WebDriver driver) {
+
+	  		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+
+	  		   }
+
+	  		 });
+
+	  		    } catch (Exception e) {
+
+	  		   }
+
+	  		 
+
+	  		//checking if loading indicator was found and if so we wait for it to
+
+	  		//disappear
+
+	  		  if (waitElement != null) {
+
+	  		      WebDriverWait wait = new WebDriverWait(driver, 60);
+
+	  		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+
+	  		    		  By.cssSelector("div[class='modal-body mx-dialog-body']"))
+
+	  		            );
+
+	  		        }
+
+			if(btnMsgClose.isEnabled())
+
+			{
+
+				Button.click("Click close Button", btnMsgClose);
+
+				System.out.println("Button is Clicked");
+
+				Button.click("Click Ok Button", btnMsgReqIdOk);
+
+			}
+
+
+
+		}
+
+		catch(Exception e) {
+
+			System.err.println(e.getMessage());
+
+			
+
+		}
+
 		}
 
 	}
-	catch(Exception e) {
-		System.err.println(e.getMessage());
-		
-	}
-	}
-}
+

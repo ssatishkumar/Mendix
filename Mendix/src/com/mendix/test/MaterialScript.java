@@ -138,6 +138,8 @@ public class MaterialScript {
 		SharedDriver.pageContainer.materialPage.switchToPopup();
 		SharedDriver.pageContainer.materialApprovalPage.reqIdSearchMyTasks(dataMap.get("RequestId"));
 		SharedDriver.pageContainer.materialApprovalPage.approvalBtnClick();
+		SharedDriver.pageContainer.materialApprovalPage.duplicateCheck();
+		SharedDriver.pageContainer.materialApprovalPage.okbuttonClick();
 	
 	}
 	
