@@ -210,6 +210,27 @@ public class Material_Change_Page {
 		return globalId;
 	}
 
+ public void clickFlagForDeletionButton(){
+    	
+    	Sync.waitForSeconds(Constants.WAIT_5);
+    	Sync.waitForSeconds(Constants.WAIT_5);
+    	Sync.waitForObject(driver, "Wait until the Material appears", btnDelete);
+		Button.click("Delete Material", btnDelete);
+		
+	}
+    public void clickFlagForDeletion() {
+    	Sync.waitForSeconds(Constants.WAIT_5);
+    	Sync.waitForSeconds(Constants.WAIT_5);
+    	//Sync.waitForSeconds(Constants.WAIT_5);
+    	
+    	JavascriptExecutor js;
+		js = (JavascriptExecutor) driver;
+		js.executeScript("$(\".mx-layoutcontainer-wrapper.mx-scrollcontainer-wrapper\").animate({ scrollTop: \"60px\" })");
+		Sync.waitForSeconds(Constants.WAIT_5);
+    	Sync.waitForObject(driver, "Wait until the Material appears", btnFlag);
+		Button.click("Delete Material", btnFlag);
+		
+    }
 
 
 	

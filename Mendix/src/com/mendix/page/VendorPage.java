@@ -1103,6 +1103,71 @@ public boolean discardLocalButtonClick() throws InterruptedException
 			return Button.click("Click Button To ok", btnok);
 		}
 	}
+	public void duplicateCheck() {
+		try {
+						
+			WebElement waitElement = null;
+			FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofMinutes(3))
+			        .pollingEvery(Duration.ofSeconds(600))
+			        .ignoring(NoSuchElementException.class)
+			        .ignoring(TimeoutException.class);
+			 
+		
+			//First checking to see if the loading indicator is found
+			// we catch and throw no exception here in case they aren't ignored
+			try {
+			  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+			   public WebElement apply(WebDriver driver) {
+			      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+			   }
+			 });
+			    } catch (Exception e) {
+			   }
+			 
+			//checking if loading indicator was found and if so we wait for it to
+			//disappear
+			  if (waitElement != null) {
+			      WebDriverWait wait = new WebDriverWait(driver, 120);
+			      wait.until(ExpectedConditions.visibilityOfElementLocated(
+			    		  By.xpath(".//*[text()='Open Record']"))
+			            );
+			        }
+
+			driver.manage().window().setPosition(new Point(-2000, 0)) ;
+			driver.findElement(By.xpath(".//*[text()='Open Record']")).sendKeys(Keys.TAB);
+			driver.findElement(By.xpath(".//*[text()='Export to Excel']")).sendKeys(Keys.TAB);
+			driver.findElement(By.xpath("//*[text()='Confirm and Approve']")).sendKeys(Keys.TAB);
+			driver.findElement(By.xpath("//*[text()='Confirm and Approve']")).sendKeys(Keys.RETURN);
+			driver.findElement(By.xpath("//*[text()='Proceed']")).click();
+			Sync.waitForSeconds(Constants.WAIT_3);
+
+
+			driver.manage().window().maximize();
+			Actions actions = new Actions(driver);
+			actions.moveToElement(btnMsgReqIdOk);
+			actions.perform();
+
+			Button.click("Click Ok Button", btnMsgReqIdOk);
+
+			
+		}
+		catch(Exception e) {
+			System.err.println(e.getMessage());
+
+
+		}
+	}
+
+
+/* public boolean clickOkToHandlePopup()
+	{
+	Sync.waitForSeconds(Constants.WAIT_5);
+	WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+	return Button.jsclick("Click on Popup", popUp, driver);
+	//Sync.waitForSeconds(Constants.WAIT_1);
+// Button.jsclick("Click ok on info Popup", btnOkay, driver);
+	}*/
+
 	public void globalSearch(String strValue) throws InterruptedException {
 		//Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForSeconds(Constants.WAIT_3);
@@ -1186,7 +1251,7 @@ public boolean discardLocalButtonClick() throws InterruptedException
 // Button.jsclick("Click ok on info Popup", btnOkay, driver);
 	}
  
- public void duplicateCheck() {
+ public void duplicateCheck_Submit() {
 		try {
 //			Sync.waitUntilObjectDisappears(driver, "Wait for Duplicate check", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 						
