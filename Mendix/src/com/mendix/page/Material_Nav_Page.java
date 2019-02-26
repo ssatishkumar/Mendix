@@ -62,12 +62,14 @@ public class Material_Nav_Page {
 	WebElement btnMsgReqIdOk;
 	
 	public void enterLocalData() {
-
-//		Sync.waitForSeconds(Constants.WAIT_6);
+		WebDriverWait wait = new WebDriverWait(driver,120);
+		Sync.waitForSeconds(Constants.WAIT_6);
+	
 		Sync.waitUntilObjectDisappears(driver, "Waiting of Create page to Load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
+		Sync.waitForSeconds(Constants.WAIT_3);
 		Sync.waitForObject(driver, textLocalData);
 		Button.click("Local Data", textLocalData);
-		Sync.waitForObject(driver, BtnAddPlantData);
+		//Sync.waitForObject(driver, BtnAddPlantData);
 		/*return Button.click("Click Edit button", BtnAddPlantData);*/
 		
 	}
@@ -154,11 +156,18 @@ public class Material_Nav_Page {
 	
 	public void clickValidatLocalData()
 	{
-		
+		WebDriverWait wait = new WebDriverWait(driver,50);
 		Sync.waitForSeconds(Constants.WAIT_5);
+		
 		driver.findElement(By.xpath(".//*[@class='glyphicon glyphicon-check']")).click();
 		
 	
+	}
+	public void clickValidatLocalRequest() {
+		WebDriverWait wait = new WebDriverWait(driver,50);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
+		driver.findElement(By.xpath(".//*[text()='Validate Local Request']")).click();
 	}
 	
 	public void clickValidateLocalData_Planning()
@@ -201,6 +210,7 @@ public class Material_Nav_Page {
 		Sync.waitUntilObjectDisappears(driver, "Wait for Save button", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 //		Sync.waitForObject(driver, "Wait for Click element", driver.findElement(By.cssSelector("div[id^='mxui_widget_TabContainer']:nth-child(1) > ul:nth-child(1) >li:nth-child(2)>a")));
 		Sync.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector("div[id^='mxui_widget_TabContainer']:nth-child(1) > ul:nth-child(1) >li:nth-child(2)>a")));
+//		Sync.waitForElementToBeClickable(driver, driver.findElement(By.cssSelector("div[id^='mxui_widget_TabContainer']:nth-child(1) >ul >li:nth-child(9)")));
 		Button.jsclick("Click Finance Tab", driver.findElement(By.cssSelector("div[id^='mxui_widget_TabContainer']:nth-child(1) > ul:nth-child(1) >li:nth-child(2)>a")), driver);
 	}
 	
@@ -266,7 +276,7 @@ public class Material_Nav_Page {
 	
 	public void submitGlobalRequestTest() throws InterruptedException {
 
-		Sync.waitForSeconds(Constants.WAIT_5);
+//		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.WaitForPageLoad(driver);
 //		Sync.waitForObject(driver, "Wait for Submit Global Request", driver.findElement(By.xpath("//*[text()='Local Actions:']/../div[2]/div[2]/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div[1]/div/button/span")));
 		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath("//*[text()='Local Actions:']/../div[2]/div[2]/div[1]/div[1]/div/div[1]/div[1]/div/div/div/div[1]/div/button/span")));
@@ -450,6 +460,16 @@ public class Material_Nav_Page {
 		roundVATPostingGroupDown.selectByVisibleText("2, Transfer");
 		
 	}*/
+		public void submitLocalRequest() {
+		Sync.waitForSeconds(Constants.WAIT_3);
+		Sync.waitForObject(driver, "Wait for Submit Local Request", driver.findElement(By.xpath(".//*[text()='Submit Local Request']")));
+		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath(".//*[text()='Submit Local Request']")));
+		Button.click("Click  Submit Local Request", driver.findElement(By.xpath(".//*[text()='Submit Local Request']")));
+//		Button.click("Click Global submit Global Request", driver.findElement(By.xpath("(//span[@class='glyphicon glyphicon-save'])[2]")));
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForSeconds(Constants.WAIT_5);
+	}
+	
 }
 	
 	
