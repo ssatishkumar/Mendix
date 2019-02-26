@@ -68,20 +68,20 @@ public class Material_JDE_Page {
 
 	public boolean enterLocalData() {
 
-		//		Sync.waitForSeconds(Constants.WAIT_6);
+//		Sync.waitForSeconds(Constants.WAIT_6);
 		Sync.waitUntilObjectDisappears(driver, "Waiting of Create page to Load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 		Sync.waitForObject(driver, textLocalData);
 		return Button.click("Local Data", textLocalData);
 		/*Sync.waitForObject(driver, BtnAddPlant);
 		return Button.click("Click Edit button", BtnAddPlant);*/
-
+		
 	}
-
+	
 	public boolean clickAddPlantData() {
 
 		Sync.waitForObject(driver, BtnAddPlantData);
 		return Button.click("Click Edit button", BtnAddPlantData);
-
+		
 	}
 
 
@@ -402,7 +402,7 @@ public class Material_JDE_Page {
 		Sync.waitForObject(driver, "Wait for Submit Global Request", driver.findElement(By.xpath("(//span[@class='glyphicon glyphicon-save'])[2]")));
 		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath("(//span[@class='glyphicon glyphicon-save'])[2]")));
 		Button.jsclick("Click Global submit Global Request", driver.findElement(By.xpath("(//span[@class='glyphicon glyphicon-save'])[2]")), driver);
-		//		Button.click("Click Global submit Global Request", driver.findElement(By.xpath("(//span[@class='glyphicon glyphicon-save'])[2]")));
+//		Button.click("Click Global submit Global Request", driver.findElement(By.xpath("(//span[@class='glyphicon glyphicon-save'])[2]")));
 		Sync.waitForSeconds(Constants.WAIT_2);
 		Sync.waitForSeconds(Constants.WAIT_5);
 
@@ -416,17 +416,17 @@ public class Material_JDE_Page {
 		Sync.WaitForPageLoad(driver);
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitUntilObjectDisappears(driver, "Wait for Save button", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
-		//		Sync.waitForObjectFluent(driver, driver.findElement(By.cssSelector("div[id^='mxui_widget_TabContainer']:nth-child(1) > ul:nth-child(1) >li:nth-child(3)>a")));
+//		Sync.waitForObjectFluent(driver, driver.findElement(By.cssSelector("div[id^='mxui_widget_TabContainer']:nth-child(1) > ul:nth-child(1) >li:nth-child(3)>a")));
 		Button.jsclick("Click Site Tab", driver.findElement(By.cssSelector("div[id^='mxui_widget_TabContainer']:nth-child(1) > ul:nth-child(1) >li:nth-child(3)>a")), driver);
 	}
-
+	
 	public void clickSiteNewButton(){
 
 		Sync.waitForObject(driver, "Wait for Site New Button", driver.findElement(By.xpath("//button[text()='New']")));
 		Sync.waitForSeconds(Constants.WAIT_2);
 		Button.click("Click New Button", driver.findElement(By.xpath("//button[text()='New']")));
 		Sync.waitForSeconds(Constants.WAIT_2);
-
+	
 	}
 
 	public void selectLocationCode(String strValue)
@@ -492,6 +492,21 @@ public class Material_JDE_Page {
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitUntilObjectDisappears(driver, "Wait for Location Code Select", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 		Button.jsclick("Click Edit Site Button", driver.findElement(By.xpath("(//*[text()='Add'])[3]/../button[2]/span")), driver);
+	}
+public void SelectingPlant() {
+		WebDriverWait wait = new WebDriverWait(driver,100);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		//Sync.waitForSeconds(Constants.WAIT_2);
+		driver.findElement(By.xpath("(.//tbody[@class='mx-datagrid-body'])[15]/tr[2]")).click();
+		System.out.println("Plant Get Selected");
+	}
+	public void RemovePlant() {
+		WebDriverWait wait = new WebDriverWait(driver,100);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath("(.//*[text()='Remove'])[9]")));
+		Button.click("Click Remove Button",driver.findElement(By.xpath("(.//*[text()='Remove'])[9]")));
+		System.out.println("plant get removed");
 	}
 }
 

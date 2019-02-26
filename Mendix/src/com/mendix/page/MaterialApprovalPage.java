@@ -76,18 +76,32 @@ public class MaterialApprovalPage {
 //	@FindBy(how=How.XPATH, using=".//*[@class='btn mx-button mx-name-actionButton11 btn-success']")
 	@FindBy(how=How.CSS, using=".glyphicon.glyphicon-ok")
 	WebElement btnGDAApproval;
+	
+	@FindBy(how=How.CSS, using="glyphicon glyphicon-save")
+	WebElement btnGlobalRequestSubmit;
 
 	@FindBy(how=How.XPATH, using="//*[text()='Proceed']")
 	WebElement btnProceed;
 
 	@FindBy(how=How.XPATH, using=".//button[text()='Submit Global Request']")
 	WebElement btnGlobalRequest;
+
+	/*@FindBy(how=How.CSS, using=".btn.btn-primary")
+	WebElement btnMsgReqIdOk;*/
+
+	@FindBy(how=How.XPATH, using="//*[text()='OK']")
+	WebElement btnMsgReqIdOkdraft;
+	@FindBy(how=How.XPATH, using="//*[text()='OK']")
+	WebElement btnOK;
 	
 	@FindBy(how=How.CSS, using="div[class='modal-body mx-dialog-body']")
     WebElement btnMsgClose;
 	
 	@FindBy(how=How.CSS, using=".btn.btn-primary")
     WebElement btnMsgReqIdOk;
+	
+	@FindBy(how=How.CSS, using=".glyphicon.glyphicon-remove")
+	WebElement btnGDAReject;
 	/**
 	 * Enter UserName.
 	 * Enter Password
@@ -141,6 +155,8 @@ public class MaterialApprovalPage {
 				
 		
 		Sync.waitForSeconds(Constants.WAIT_3);
+	
+		
 		Button.jsclick("Search My task", btnReqIdMyTaskSearch, driver);
 		Sync.waitForSeconds(Constants.WAIT_3);
 		Textbox.click("Click Enter Request Id", txtboxReqIdSearch);
@@ -221,7 +237,7 @@ public class MaterialApprovalPage {
 		  if (waitElement != null) {
 		      WebDriverWait wait = new WebDriverWait(driver, 60);
 		      wait.until(ExpectedConditions.visibilityOfElementLocated(
-		    		  By.xpath("//*[text()='Reject Global Request']"))
+		    		  By.xpath("//span[@class='glyphicon glyphicon-flash']"))
 		            );
 		        }
 		
@@ -230,7 +246,7 @@ public class MaterialApprovalPage {
 		Sync.waitForElementToBeClickable(driver, btnlocalAction);
 		Button.click("Click Local Action button", btnlocalAction);
 		Sync.waitForSeconds(Constants.WAIT_2);
-		return Button.jsclick("Click Approval Button", btnGDAApproval, driver);
+		return Button.jsclick("Click Approval Button", btnGDAReject, driver);
 	}
 
 
@@ -378,9 +394,9 @@ public class MaterialApprovalPage {
 		        }
 		  
 		Button.click("Click Local Action button", btnlocalAction);
-		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForSeconds(Constants.WAIT_5);
 		
-		Button.jsclick("Click Approval Button", driver.findElement(By.xpath("//button[text()='Mark all Views Completed']")), driver);
+		Button.jsclick("Click Mark All views Completed Button", driver.findElement(By.xpath("//button[text()='Mark all Views Completed']")), driver);
 		Sync.waitForSeconds(Constants.WAIT_2);
 //		Button.jsclick("Click Approval Button", btnGDAApproval, driver);
 	}
@@ -413,7 +429,18 @@ public class MaterialApprovalPage {
 		      actions.moveToElement(btnMsgReqIdOk);
 		      actions.perform();
 			Button.click("Click Ok Button", btnMsgReqIdOk);
+			
+//		}
+		
 	}
+	public void submitRequestOkButtonClick() {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(
+	    		  By.xpath("//*[text()='OK']")));
+		Button.click("Click On OK button", btnOK);
+	}
+	
 
 	public boolean submitGlobalRequest()
 	{
@@ -423,6 +450,19 @@ public class MaterialApprovalPage {
 		return Button.click("Click Approval button", btnGlobalRequest);
 	}
 	
+
+	public boolean submitGlobalRequest_draft()
+	{
+
+		Sync.waitForElementToBeClickable(driver, btnlocalAction);
+		Button.click("Click Local Action button", btnlocalAction);
+		Button.click("Click Approval button", btnGlobalRequest);
+		Actions btnselect = new Actions(driver);
+		btnselect.moveToElement(btnMsgReqIdOk);
+		btnselect.build();
+		btnselect.perform();
+		return Button.click("Click Ok Button", btnMsgReqIdOk);
+	}
 	public boolean RejectBtnClick()
 	{
 
@@ -438,11 +478,14 @@ public class MaterialApprovalPage {
 
 	public  void launchUFT() throws IOException {
 		Runtime.getRuntime().exec("C:\\Users\\IBM_ADMIN\\git\\MDM_TEST\\MDM_POC\\AutoIt UFT Launch\\UFT.exe");
-        }
-	
-	public  void launch_UFT_JDE() throws IOException {
+		
+
+	}
+public  void launch_UFT_JDE() throws IOException {
 		Runtime.getRuntime().exec("C:\\Users\\SatishKumarSundaramo\\git\\Mendix_New\\Mendix\\AutoIt_UFT_Launch\\JDE.exe");
         }
+
+
 
 	public void duplicateCheck() {
 		try {
@@ -513,6 +556,8 @@ public class MaterialApprovalPage {
 
 		}
 	}
+//}
+
 	
 	public void okbuttonClick() {
 

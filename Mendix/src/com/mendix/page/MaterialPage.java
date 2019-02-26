@@ -15,6 +15,7 @@ import java.util.function.Function;
 import org.apache.xalan.xsltc.compiler.sym;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.Keys;
@@ -30,12 +31,16 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import com.mendix.tool.Button;
 import com.mendix.tool.Constants;
 import com.mendix.tool.Sync;
 import com.mendix.tool.Textbox;
 import com.mendix.util.ExcelUtil;
+import com.mendix.util.DataProviderUtil.staticProviderClass;
+
+import javafx.scene.control.Alert;
 
 public class MaterialPage {
 
@@ -158,7 +163,9 @@ public class MaterialPage {
 	@FindBy(how=How.XPATH, using=".//*[text()='Request complies to all Validations']")
 	WebElement txtValidationMsg;
 
-	
+
+
+
 	//**********************************Global Actions*****************************************************************
 	
 	@FindBy(how=How.XPATH, using=".//button[text()='Submit Global Request']")
@@ -166,6 +173,8 @@ public class MaterialPage {
 	
 	@FindBy(how=How.XPATH, using=".//button[text()='Save As Draft']")
 	WebElement btnSaveAsDraft;
+	@FindBy(how=How.XPATH, using=".//span[@class='glyphicon glyphicon-saved']")
+	WebElement btnSavingAsDraft;
 	
 	@FindBy(how=How.XPATH, using="//*[text()='Validate']")
 	WebElement btnValidate;
@@ -194,10 +203,10 @@ public class MaterialPage {
 	WebElement btnMsgReqIdOk;
 	
 //	@FindBy(how=How.XPATH, using="(.//*[text()='New'])[4]")
-	@FindBy(how=How.XPATH, using="(.//*[starts-with(@id,'uniqName') And text()='New'])[4]")
-	WebElement btnCommentNew;
+/*	@FindBy(how=How.XPATH, using="(.//*[starts-with(@id,'uniqName') And text()='New'])[4]")
+	WebElement btnCommentNew;*/
 	
-	@FindBy(how=How.XPATH, using="(.//*[starts-with(@id,'mxui_widget_TextArea')])[4]")
+	/*@FindBy(how=How.XPATH, using="(.//*[starts-with(@id,'mxui_widget_TextArea')])[4]")
 	WebElement textComment;
 	
 	@FindBy(how=How.XPATH, using="//*[text()='Save']")
@@ -205,7 +214,7 @@ public class MaterialPage {
 	
 
 	@FindBy(how=How.XPATH, using="//*[text()='Request ID']/../../td[4]/div/input")
-	WebElement txtboxReqIdEnter;
+	WebElement txtboxReqIdEnter;*/
 
 	@FindBy(how=How.XPATH, using="//*[text()='OK']")
 	WebElement btnMsgReqIdOkdraft;
@@ -217,23 +226,101 @@ public class MaterialPage {
 	@FindBy(how=How.XPATH, using="//*[@class='glyphicon glyphicon-plus']")
 	WebElement btnAdvancedSearch;
 
-
+/*
 	@FindBy(how=How.XPATH, using="//*[text()='Global ID']/../../td[4]/div/input")
 	WebElement txtboxGlobalIdEnter;
+*/
+
+	@FindBy(how=How.XPATH, using="//*[text()='Request ID']/../../td[4]/div/input")
+	WebElement txtboxReqIdEnter;
+
 
 
 	@FindBy(how=How.XPATH, using="//button[text()='Search']")
 	WebElement btnReqIdEnter;
 
-	@FindBy(how=How.XPATH, using="//*[text()='Created On']/../../td[4]/div/div/div/input")
+	/*@FindBy(how=How.XPATH, using="//*[text()='Created On']/../../td[4]/div/div/div/input")
+	WebElement txtboxCreateOnEnter;*/
+
+	
+	/*@FindBy(how=How.XPATH, using="//*[text()='Created On']/../../tr[3]td[4]/div/div/div/input")
+	WebElement txtboxCreateOnEnter;*/
+	
+	
+	@FindBy(how=How.XPATH, using="//*[text()='Created On']/../../tr[4]td[4]/div/div/div/input")
 	WebElement txtboxCreateOnEnter;
+	
 
 	@FindBy(how=How.XPATH, using="//button[text()='Get Full Material Data']")
 	WebElement btnFullMaterailData;
-
+	
+	
+	@FindBy(how=How.XPATH, using="//*[text()='Global ID']/../../td[4]/div/input")
+	WebElement txtboxGlobalIdEnter; 
+	
+/*	@FindBy(how=How.XPATH, using=".//span[@class='glyphicon glyphicon-ban-circle']")
+	WebElement btnDiscardCreate;
+*/	
+/*	@FindBy(how=How.XPATH, using="//*[text()='OK']")
+	WebElement btnOK;
+*/	
+	@FindBy(how=How.CSS, using=".btn.btn-primary")
+	WebElement btnOkay; 
+	
+	
+/*	 @FindBy(how=How.XPATH, using="//*[text()='Reject Global Request']")
+		WebElement btnRejectGlobalRequest;
+*/	
 	/****************************************Local Actions*********************************/
 	@FindBy(how=How.XPATH, using=".//button[@title='Submission of both Global and loca JDE data']")
 	WebElement btnLocalRequest;
+
+
+	@FindBy(how=How.XPATH, using="//*[text()='Save']")
+		WebElement btnSave;
+	
+	@FindBy(how=How.XPATH, using="(.//*[starts-with(@id,'uniqName') And text()='New'])[4]")
+	WebElement btnCommentNew;
+	
+	@FindBy(how=How.XPATH, using="(.//*[starts-with(@id,'mxui_widget_TextArea')])[4]")
+	WebElement textComment;
+	
+	@FindBy(how=How.XPATH, using="//button[text()='Flag For Deletion']")
+	WebElement btnDelete;
+	
+	@FindBy(how=How.CSS, using="div[class='modal-body mx-dialog-body']")
+	WebElement btnMsgClose; 
+	
+	
+	@FindBy(how=How.CSS, using=".modal-body.mx-dialog-body>p")
+	WebElement msgGetRequest; 
+	
+	@FindBy(how=How.XPATH, using="//*[text()='Plants']/..//input")
+	WebElement checkBoxPlant;
+	
+	@FindBy(how=How.XPATH,using=".//*[text()='Plants']/..//button[1]")
+	WebElement selectAllButton;
+	
+	
+	@FindBy(how=How.XPATH,using=".//*[text()='Create Request']")
+	WebElement createRequest;
+	@FindBy(how=How.XPATH, using="//*[text()='Global Data']")
+	WebElement btnGlobalData;
+	
+	@FindBy(how=How.XPATH, using="//button[@class='btn mx-button mx-name-actionButton1 btn-lg btn-action-panel pull-right btn-default']")
+	WebElement btnToConfirm;
+	
+	@FindBy(how=How.XPATH, using="//button[@text='Confirm Extension']")
+	WebElement btnConfirmExtension;
+	
+	@FindBy(how=How.XPATH, using="//button[text()='Flag For Deletion']")
+	WebElement btnflagForDeletion;
+	
+	@FindBy(how=How.XPATH, using="//button[@class='btn mx-button mx-name-actionButton8 btn-success']")
+	WebElement btnok;
+	
+	
+
 	/**
 	 * Enter UserName.
 	 * Enter Password
@@ -261,7 +348,7 @@ public class MaterialPage {
 		Sync.waitUntilObjectDisappears(driver, "Loading Indicator", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
 		driver.manage().window().maximize();
 	}
-	
+
 	public boolean clickMaterial(String strPageName) throws InterruptedException{
 		Sync.WaitForPageLoad(driver);
 		if(Button.verifyObject(textMaterial)){
@@ -311,7 +398,7 @@ public class MaterialPage {
 		}else{
 			return Button.click("Create Button Click", btnCreate);
 		}
-		
+
 	}
 
 	public boolean disableLocaData() {
@@ -324,16 +411,20 @@ public class MaterialPage {
 		Button.click("Disable Local Request", btnDisableLocalRequest);
 		return Button.click("Proceed", btnProceed);
 	}
-	
+
 	public void Localactionbutton() {
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForObject(driver, btnLocalActions);
 		Button.click("Local Actions button", btnLocalActions);
 		Sync.waitForSeconds(Constants.WAIT_2);
 	}
+	
 
 	public boolean materialDescCreate(String strValue) throws InterruptedException {
-		Sync.waitForSeconds(Constants.WAIT_2);
+		/*JavascriptExecutor js;
+		js = (JavascriptExecutor) driver;
+		js.executeScript("$(\".mx-layoutcontainer-wrapper.mx-scrollcontainer-wrapper\").animate({ scrollBottom: \"100px\" })");*/
+		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.WaitForPageLoad(driver);
 		Sync.waitForObject(driver, btnEditDesc);
 		Button.jsclick("Edit Description button Click", btnEditDesc, driver);
@@ -341,7 +432,10 @@ public class MaterialPage {
 		Sync.waitForObject(driver, txtboxDesc);
 		Button.mouseClick(driver, "Click Material Desc Field", txtboxDesc);
 		Textbox.enterValue("Enter Material Desc", txtboxDesc, strValue);
-		return Button.click("Material Description Save", btnMaterialDescSave);
+		WebDriverWait wait=new WebDriverWait(driver, 50);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_1);
+		return Button.jsclick("Material Description Save", btnMaterialDescSave, driver);
 	}
 
 	public boolean materialGrpSelectionTest(String strValue) throws InterruptedException {
@@ -354,6 +448,10 @@ public class MaterialPage {
 			Button.click("Click On Ok on Error Popup", btnOK);		
 		}
 		Sync.waitForSeconds(Constants.WAIT_5);
+		JavascriptExecutor js;
+		js = (JavascriptExecutor) driver;
+		js.executeScript("$(\".mx-layoutcontainer-wrapper.mx-scrollcontainer-wrapper\").animate({ scrollBottom: \"50px\" })");
+		Sync.waitForElementToBeClickable(driver, btnMaterialGrpselection);
 		Button.jsclick("Click Material Group Selection button", btnMaterialGrpselection, driver);
 		Sync.waitForObject(driver, "Wait for Material Group Selection Text Box", txtboxMaterialGrpSearch);
 		Sync.waitForSeconds("5");
@@ -370,30 +468,49 @@ public class MaterialPage {
 
 	public boolean grossWeightEntestTest(String strValue) {
 
+     	Sync.waitForSeconds(Constants.WAIT_2);
 		Sync.waitForElementToBeClickable(driver, txtBoxGrossWeightUOM);
 		Textbox.click("Click Gross Weight Base UOM", txtBoxGrossWeightUOM);
+//		Sync.waitForSeconds(Constants.WAIT_1);
 		Sync.waitForObject(driver, "Wait for Gross Weight Base UOM TextBox", txtBoxGrossWeightUOM);
 		return Textbox.enterValue("Enter Gross Weight Base UOM", txtBoxGrossWeightUOM, strValue);
 	}
 
 	public boolean unitOfWeightSelectionTest(String strValue) throws InterruptedException {
 
+     	Sync.waitForSeconds(Constants.WAIT_2);
 		Sync.waitForElementToBeClickable(driver, btnUnitofWeight);
 		Button.click("Click Unit of Weight selecction button", btnUnitofWeight);
 		Sync.waitForObject(driver, "Wait for UOM popup", txtboxUnitofWeightInput);
 		Textbox.enterValue("Enter Unit of Weight", txtboxUnitofWeightInput, strValue);
 		Sync.waitForObject(driver, "Wait for UOM popup", btnUnitofWeightSearch);
 		Button.click("Click Search Unit of Weight button", btnUnitofWeightSearch);
-		Sync.waitForSeconds(Constants.WAIT_3);
-		driver.findElement(By.xpath("//*[text()='"+strValue+"']")).click();
-		Sync.waitForSeconds(Constants.WAIT_3);
+		Sync.waitForSeconds(Constants.WAIT_5);
+	   /* Sync.waitForObjectFluent(driver, driver.findElement(By.xpath("//div[@class='mx-datagrid-head-caption' and text()='Commercial Unit']/../../../../../../table[2])")));
+//		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath("//*[text()='"+strValue+"']")));
+		
+	    Actions btnselect = new Actions(driver);
+		btnselect.moveToElement(driver.findElement(By.xpath("//*[text()='"+strValue+"']")));
+		btnselect.build();
+		btnselect.perform();
+		btnselect.click();*/
+	    
+	    
+	    driver.findElement(By.xpath("//*[text()='"+strValue+"']")).click();
+	    Sync.waitForSeconds(Constants.WAIT_5);
 		return Button.click("Click Unit of Weight Select button", btnUnitofWeightSelect);
 
 	}
 
-	public boolean baseUOMSelectionTest(String strValue) throws InterruptedException {
+	public void baseUOMSelectionTest(String strValue) throws InterruptedException {
+
+     	Sync.waitForSeconds(Constants.WAIT_5);
+		JavascriptExecutor js;
+		js = (JavascriptExecutor) driver;
+		js.executeScript("$(\".mx-layoutcontainer-wrapper.mx-scrollcontainer-wrapper\").animate({ scrollTop: \"60px\" })");
 
 		Sync.waitForElementToBeClickable(driver, btnBaseUOMSelection);
+		Sync.waitForSeconds(Constants.WAIT_5);
 		Button.click("Click Base UOM selection button", btnBaseUOMSelection);
 		Sync.waitForObject(driver, "Wait for Base UOM Text Box Enter" , txtboxBaseUOM);
 		Textbox.enterValue("Enter Base UOM", txtboxBaseUOM, strValue);
@@ -402,35 +519,48 @@ public class MaterialPage {
 		Sync.waitForElementToBeClickable(driver, txtBaseUOMDisplay);
 		Button.click("Click Base UOM Display", txtBaseUOMDisplay);
 		Sync.waitForElementToBeClickable(driver, btnBaseUOMSelect);
-
-		Sync.waitForSeconds(Constants.WAIT_3);
+		
+//		Actions act = new Actions(driver);
+//		new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(child_menu));
+//		act.moveToElement(main_menu).moveToElement(child_menu).click().build().perform();
+		
 		Actions btnselect = new Actions(driver);
 		btnselect.moveToElement(btnBaseUOMSelect);
 		btnselect.build();
 		btnselect.perform();
-		return Button.click("Click Base UOM select button", btnBaseUOMSelect);
+		Button.click("Click Base UOM select button", btnBaseUOMSelect);
 	}
 
 
 	public boolean netWeightEnterTest(String strValue) throws InterruptedException {
 
-
+     	Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForElementToBeClickable(driver, txtboxNetWeight);
+		Textbox.clear("Enter Net Weight", txtboxNetWeight);
 		Button.click("Click Net Weight Enter TextBox", txtboxNetWeight);
-
+		
 		return Textbox.enterValue("Enter Net Weight", txtboxNetWeight, strValue);
 	}
 
 	public void uomPrimarySelectionTest() throws InterruptedException {
-
-		Sync.waitForObject(driver, "Wait for UOM Primary Select", slctUOMPrimary);
-		Select dropdownUOM= new Select(slctUOMPrimary);
+		/*JavascriptExecutor js;
+		js = (JavascriptExecutor) driver;
+		js.executeScript("$(\".mx-layoutcontainer-wrapper.mx-scrollcontainer-wrapper\").animate({ scrollBottom: \"100px\" })");*/
+      
+		//Sync.waitForObject(driver, "Wait for UOM Primary Select", slctUOMPrimary);
 		Sync.waitForSeconds(Constants.WAIT_2);
+		System.out.println("Click drop down");
+		Sync.waitForSeconds(Constants.WAIT_5);
+		//driver.findElement(By.cssSelector(".//*[text()='UoM - Primary']/../div/div/select")).click();
+		
+		Select dropdownUOM= new Select(slctUOMPrimary);
 		dropdownUOM.selectByIndex(1);
 	}
 
 	public boolean validateTestCreate() {
-
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Button.click("Local Actions button", btnLocalActions);
 		Sync.waitForSeconds(Constants.WAIT_6);
 		Sync.waitForSeconds(Constants.WAIT_1);
 		Button.click("Click Validate", btnValidate);
@@ -450,8 +580,24 @@ public class MaterialPage {
 						
 	}
 
+/*	public void submitGlobalRequestTest() throws InterruptedException {
+
+
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_1);
+		Sync.waitForObject(driver, "Verify Validate message", txtValidationMsg);
+		Sync.waitForSeconds(Constants.WAIT_6);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
+		Button.click("Click Global submit Global Request", btnGlobalRequest);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
+		
+	}*/
+
 	
-	public void RejectGDA() throws InterruptedException, AWTException {
+	/*public void RejectGDA() throws InterruptedException, AWTException {
 
 		System.out.println("Scrolling action");
 
@@ -508,9 +654,9 @@ public class MaterialPage {
 		Sync.waitForObject(driver, btnOK);
 		Button.click("Click On OK button", btnOK);
 		Thread.sleep(2000);
-	}
+	}*/
 	
-	public void DiscardCreateGDA() throws InterruptedException {
+	/*public void DiscardCreateGDA() throws InterruptedException {
 
 		Thread.sleep(6000);
 		Button.click("Local Actions button click", btnLocalActions);
@@ -521,7 +667,7 @@ public class MaterialPage {
 		Sync.waitForObject(driver, btnOK);
 		Button.click("Click On OK button", btnOK);
 		Thread.sleep(2000);
-	}
+	}*/
 
 	public void submitGlobalRequestTest() throws InterruptedException {
 
@@ -579,14 +725,14 @@ public class MaterialPage {
 		return Id;
 	}
 
-	public void clickLocalAction()
+	/*public void clickLocalAction()
 	{
 		Sync.waitForSeconds(Constants.WAIT_2);
 		WebElement element = driver.findElement(By.xpath(".//*[@class='glyphicon glyphicon-flash']"));
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).click().build().perform();
 //		driver.findElement(By.xpath(".//*[@class='glyphicon glyphicon-flash']")).click();
-	}
+	}*/
 	
 	public boolean validateTestCreateLocal() {
         Sync.waitForSeconds(Constants.WAIT_6);
@@ -598,15 +744,133 @@ public class MaterialPage {
 
 
 	//***********************************************************************************
+
+
+
+		public String getRequestIdOne()
+				throws InterruptedException, FileNotFoundException, IOException {
+
+              WebDriverWait wait = new WebDriverWait(driver,80);
+				Sync.waitForSeconds(Constants.WAIT_5);
+				Sync.waitForSeconds(Constants.WAIT_5);
+				
+				/*String buttonColor = btnMsgReqIdOk.getCssValue("background-color");
+				String buttonTextColor = btnMsgReqIdOk.getCssValue("color");
+				System.out.println("Button color: " + buttonColor);
+				System.out.println("Text color " + buttonTextColor);*/
+				// Sync.waitUntilObjectDisappears(driver, "Waiting of Create page to Load", By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
+				// Sync.waitForObjectFluent(driver, msgRequestSuccess);
+
+				WebElement waitElement = null;
+
+
+				FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofMinutes(3))
+				.pollingEvery(Duration.ofSeconds(600))
+				.ignoring(NoSuchElementException.class)
+				.ignoring(TimeoutException.class);
+
+				//First checking to see if the loading indicator is found
+				// we catch and throw no exception here in case they aren't ignored
+				try {
+				waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+				public WebElement apply(WebDriver driver) {
+				return driver.findElement(By.cssSelector(".modal-body.mx-dialog-body>p"));
+				}
+				});
+				} catch (Exception e) {
+				}
+
+				//checking if loading indicator was found and if so we wait for it to
+				//disappear
+				/* if (waitElement != null) {
+				WebDriverWait wait = new WebDriverWait(driver, 60);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath(".//*[@id='mxui_widget_DialogMessage_0']/div[1]/div[2]/p"))
+
+				);
+				}*/
+
+
+				/*Wait<WebDriver> wait = new FluentWait<WebDriver>(driver) 
+				.withTimeout(Duration.ofSeconds(400)) 
+				.pollingEvery(Duration.ofMillis(600)) 
+				.ignoring(NoSuchElementException.class);
+
+				WebElement msgRequestSuccess=wait.until(new Function<WebDriver, WebElement>() { 
+				public WebElement apply(WebDriver driver) { 
+				return driver.findElement(By.xpath(".//*[@id='mxui_widget_DialogMessage_0']/div[1]/div[2]/p")); 
+				} 
+				});*/
+
+
+				System.out.println(msgGetRequest.getText());
+				Sync.waitForObject(driver, "Wait of Dialog Box Success Message", msgGetRequest);
+				String reqId=driver.findElement(By.cssSelector(".modal-body.mx-dialog-body>p")).getText();
+				String[] parts = reqId.split(" ");
+				String Id = parts[2];
+				System.out.println("RequestId is: " + Id);
+//				ExcelUtil.setCellDataNew("TestPlan",4,10,Id);
+				ExcelUtil.setCellData_New("TestPlan", "RequestId", Id);
+				// Sync.waitForSeconds(Constants.OBJECT_WAIT_TIME);
+				/*System.out.println(btnMsgReqIdOk.getCssValue("color"));
+				Actions actions = new Actions(driver);
+				actions.moveToElement(btnMsgReqIdOk);
+				actions.perform();
+
+				Button.click("Click Ok Button", btnMsgReqIdOk);*/
+				return Id;
+				}
+
+
 	
+	public void clickLocalAction()
+	{    	WebDriverWait waitone=new WebDriverWait(driver, 50);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_1);
+		WebElement waitElement = null;
+		/*FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+		        .withTimeout(Duration.ofMinutes(3))
+		        .pollingEvery(Duration.ofSeconds(600))
+		        .ignoring(NoSuchElementException.class)
+		        .ignoring(TimeoutException.class);
+		 
+		//First checking to see if the loading indicator is found
+		// we catch and throw no exception here in case they aren't ignored
+		try {
+		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+		   public WebElement apply(WebDriver driver) {
+		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+		   }
+		 });
+		    } catch (Exception e) {
+		   }
+		*/ 
+		//checking if loading indicator was found and if so we wait for it to
+		//disappear
+		  //if (waitElement != null) {
+		      WebDriverWait wait = new WebDriverWait(driver, 120);
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+		    		  By.xpath(".//*[@class='glyphicon glyphicon-flash']"))
+		            );
+		        //}
+//		Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
+//		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath(".//*[@class='glyphicon glyphicon-flash']")));
+		driver.findElement(By.xpath(".//*[@class='glyphicon glyphicon-flash']")).click();
+	}
+	
+
+	//***********************************************************************************
+
 	public void SaveAsDraft() throws InterruptedException {
 
 
-		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForSeconds(Constants.WAIT_1);
 		Sync.waitForObject(driver, "Verify Validate message", txtValidationMsg);
-		Button.click("Click Save as Draft", btnSaveAsDraft);
+		/*Button.click("Click Save as Draft", btnSaveAsDraft);*/
+		Button.click("Click Save as Draft", btnSavingAsDraft);	
 		Sync.waitForSeconds(Constants.WAIT_2);
-		Sync.waitForSeconds(Constants.WAIT_6);
+		//Sync.waitForSeconds(Constants.WAIT_6);
 	}
 		
 	public  String getRequestId_draft()
@@ -629,14 +893,31 @@ public class MaterialPage {
 		return IdNum;
 	}
 
+	/*public  String getRequestId_Create()
+			throws InterruptedException, FileNotFoundException, IOException {
+
+		Sync.waitForSeconds(Constants.WAIT_6);
+		Sync.waitForObject(driver, "Wait of Dialog Box Success Message", msgRequestSuccess);
+		String reqId=driver.findElement(By.xpath(".//*[@id='mxui_widget_DialogMessage_0']/div[1]/div[2]/p")).getText();
+		String[] parts = reqId.split(" ");
+		String Id = parts[2];
+		String IdNum = Id.replaceAll("\\.", "");
+		System.out.println("RequestId is: " + Id);
+		ExcelUtil.excelWrite(IdNum);
+		System.out.println("RequestId is: " + IdNum);
+		Sync.waitForSeconds(Constants.WAIT_3);
+		Sync.waitForElementToBeClickable(driver, btnMsgReqIdOkdraft);
+//		Button.click("Click Ok Button", btnMsgReqIdOkdraft);
+		return Id;
+	}*/
 	
-	public boolean navigateToDashboard() {
+/*	public boolean navigateToDashboard() {
 
 		Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
 		Sync.waitForObject(driver, "Wait until the Material appears", textMaterial);
 		Button.click("Click Materials Menu", textMaterial);
 		return Button.click("Click Dashboard Menu", menuMaterialDashboard);
-	}
+	}*/
 
 	public void advancedSearch() throws InterruptedException
 	{
@@ -649,6 +930,16 @@ public class MaterialPage {
 
 	}
 
+	public boolean navigateToDashboard() {
+	    Sync.waitForSeconds(Constants.WAIT_6);
+	    Sync.waitForSeconds(Constants.WAIT_1);
+	    
+		//Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
+		Sync.waitForObject(driver, "Wait until the Material appears", textMaterial);
+		Button.click("Click Materials Menu", textMaterial);
+		return Button.click("Click Dashboard Menu", menuMaterialDashboard);
+	}
+
 	public void scrolltoGlobalSearch() {
 		JavascriptExecutor js;
 		js = (JavascriptExecutor) driver;
@@ -658,6 +949,11 @@ public class MaterialPage {
 	public  void reqIdSearchGlobal(String strValue) throws InterruptedException {
 		Sync.waitForSeconds(Constants.WAIT_2);
 		Sync.waitForObject(driver, txtboxReqIdEnter);
+		
+		Textbox.clear("Clear TextBox Value", txtboxReqIdEnter);
+		Textbox.enterValue("Enter TextBox Value", txtboxReqIdEnter, strValue);
+		
+		
 
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -683,26 +979,212 @@ public class MaterialPage {
 
 		// Now format the date
 		String dateFormatted= dateFormat.format(date);
+		
 
 		Textbox.enterValue("Enter TextBox Value", txtboxCreateOnEnter, dateFormatted);
 	}
 
+
 	public  String getGlobalId() throws FileNotFoundException, IOException {
 		Sync.waitForSeconds(Constants.WAIT_3);
-		Sync.waitForObject(driver, "Wait for Global Material Id", driver.findElement(By.xpath("//*[text()='Global Material ID']/../../../../../../table[2]/tbody/tr/td[4]/div")));
-		String globalId=driver.findElement(By.xpath("//*[text()='Global Material ID']/../../../../../../table[2]/tbody/tr/td[4]/div")).getText();
+		
+//		Sync.waitForSeconds(Constants.WAIT_2);
+		/*WebElement waitElement = null;
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+		        .withTimeout(Duration.ofMinutes(3))
+		        .pollingEvery(Duration.ofSeconds(600))
+		        .ignoring(NoSuchElementException.class)
+		        .ignoring(TimeoutException.class);
+		 
+		//First checking to see if the loading indicator is found
+		// we catch and throw no exception here in case they aren't ignored
+		try {
+		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+		   public WebElement apply(WebDriver driver) {
+		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+		   }
+		 });
+		    } catch (Exception e) {
+		   }
+		 
+		//checking if loading indicator was found and if so we wait for it to
+		//disappear
+		  if (waitElement != null) {
+		      WebDriverWait wait = new WebDriverWait(driver, 30);
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+		    		  By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div"))
+		    		           
+		            );
+		        }*/
+//		Sync.waitForObject(driver, "Wait for Global Material Id", driver.findElement(By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div")));
+		//String globalLock=driver.findElement(By.cssSelector("tr > td.mx-name-column17.mx-left-aligned > div")).getText();
+		String globalLockState=driver.findElement(By.xpath("//*[text()='Global Lock']/../../../../../../table[2]/tbody[1]/tr[1]/td[1]/div")).getText();
+		System.out.println(globalLockState);
+		
+		//String globalId=driver.findElement(By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div")).getText();
+		String globalId=driver.findElement(By.xpath("//*[text()='Global ID']/../../../../../../table[2]/tbody[1]/tr[1]/td[2]/div")).getText();
 		System.out.println(globalId);
 		ExcelUtil.excelWriteGlobalId(globalId);
 		return globalId;
 	}
+	public  String getGlobalIdProcessInfo() throws FileNotFoundException, IOException {
+		Sync.waitForSeconds(Constants.WAIT_3);
+		
+//		Sync.waitForSeconds(Constants.WAIT_2);
+		/*WebElement waitElement = null;
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+		        .withTimeout(Duration.ofMinutes(3))
+		        .pollingEvery(Duration.ofSeconds(600))
+		        .ignoring(NoSuchElementException.class)
+		        .ignoring(TimeoutException.class);
+		 
+		//First checking to see if the loading indicator is found
+		// we catch and throw no exception here in case they aren't ignored
+		try {
+		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+		   public WebElement apply(WebDriver driver) {
+		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']"));
+		   }
+		 });
+		    } catch (Exception e) {
+		   }
+		 
+		//checking if loading indicator was found and if so we wait for it to
+		//disappear
+		  if (waitElement != null) {
+		      WebDriverWait wait = new WebDriverWait(driver, 30);
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+		    		  By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div"))
+		    		           
+		            );
+		        }*/
+//		Sync.waitForObject(driver, "Wait for Global Material Id", driver.findElement(By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div")));
+		//String globalLock=driver.findElement(By.cssSelector("tr > td.mx-name-column17.mx-left-aligned > div")).getText();
+		//String globalLockState=driver.findElement(By.xpath("//*[text()='Global Lock']/../../../../../../table[2]/tbody[1]/tr[1]/td[1]/div")).getText();
+		//System.out.println(globalLockState);
+		
+		//String globalId=driver.findElement(By.cssSelector("tr > td.mx-name-column2.mx-right-aligned > div")).getText();
+		String globalId=driver.findElement(By.xpath("//*[text()='Global ID']/../../../../../../table[2]/tbody[1]/tr[1]/td[2]/div")).getText();
+		System.out.println(globalId);
+		ExcelUtil.excelWriteGlobalId(globalId);
+		return globalId;
+	}
+	
+	
+	
+	
 
-	public void clickFullMaterialData() {
+	/*public void clickFullMaterialData() {
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
 		Sync.waitForObject(driver, "Wait until the Material appears", btnFullMaterailData);
 		Button.click("Click Materials Menu", btnFullMaterailData);
 		Sync.waitForSeconds(Constants.WAIT_5);
+	}
+	
+	public boolean clickFullMaterialData() {
+		Sync.waitForSeconds(Constants.WAIT_3);
+
+		Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForObject(driver, "Wait until the Material appears", btnFullMaterailData);
+		return Button.click("Click Get Full Material Data", btnFullMaterailData);
+		
+	}*/
+	public void clickFullMaterialDataNew() {
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForObject(driver, "Wait until the Material appears", btnFullMaterailData);
+		Button.click("Click Materials Menu", btnFullMaterailData);
+		Sync.waitForSeconds(Constants.WAIT_10);
+		/*while(driver.findElement(By.xpath("//*[@class='close mx-dialog-close']")).isDisplayed()) {
+		WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+		String popUpText = driver.findElement(By.xpath("//*[@class='modal-body mx-dialog-body']/p")).getText();
+		System.out.println(popUpText);
+		//if(popUpText.equalsIgnoreCase("This Material does not have a local material number yet, so no local data was retrieved"))
+		//{
+
+		Button.jsclick("Click on Popup", popUp, driver);
+		Sync.waitForSeconds(Constants.WAIT_2);
+
+		//Sync.waitForElementToBeClickable(driver, clickOkButton);
+		//Button.jsclick("Click ok on info Popup", btnOkay, driver);
+		//}
+	}	*/
+		
+}	
+	public void clickFullMaterialDataDeletion() throws InterruptedException {
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitUntilObjectDisappears(driver, "Wait for Materials", By.xpath((".//*[@id='mxui_widget_Progress_0']/div[2]")));
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForObject(driver, "Wait until the Material appears", btnFullMaterailData);
+	    Button.click("Click Get Full Materaial", btnFullMaterailData);
+        /*WebElement waitElement = null;
+		FluentWait<WebDriver> fwait = new FluentWait<WebDriver>(driver)
+		        .withTimeout(Duration.ofMinutes(1))
+		        .pollingEvery(Duration.ofSeconds(600))
+		        .ignoring(NoSuchElementException.class)
+		        .ignoring(TimeoutException.class);
+		 
+		//First checking to see if the loading indicator is found
+		// we catch and throw no exception here in case they aren't ignored
+		try {
+		  waitElement = fwait.until(new Function<WebDriver, WebElement>() {
+		   public WebElement apply(WebDriver driver) {
+		      return driver.findElement(By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]"));
+		   }
+		 });
+		    } catch (Exception e) {
+		   }
+		
+		//checking if loading indicator was found and if so we wait for it to
+		//disappear
+		  if (waitElement != null) {
+		      WebDriverWait wait = new WebDriverWait(driver, 100);
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(
+		    		  By.xpath(".//*[text()='OK']")));
+		      
+		      
+		      
+		  }
+		
+		*/
+	 // Switching to Alert  
+	    
+	    try {
+	    /*WebDriverWait wait = new WebDriverWait(driver, 100);
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(
+	    		  By.xpath(".//*[@id='mxui_widget_Progress_0']/div[2]]")));
+	    */ 
+	    	WebElement msgbox = driver.findElement(By.xpath(".//p[text()='This Material does not have a local material number yet, so no local data was retrieved']"));
+			while(msgbox.isDisplayed())
+			{   
+				
+			    System.out.println("Button is Clicked");
+
+				Sync.waitForSeconds(Constants.WAIT_5);
+				Button.click("Click ok button", btnOK);
+			
+			}
+			//else{
+			JavascriptExecutor js;
+			js = (JavascriptExecutor) driver;
+			js.executeScript("$(\".mx-layoutcontainer-wrapper.mx-scrollcontainer-wrapper\").animate({ scrollTop: \"100px\" })");
+			Sync.waitForSeconds(Constants.WAIT_5);
+			
+			Sync.waitForSeconds(Constants.WAIT_5);
+			
+		  Button.click("Click Flag for Delete Button", btnDelete);
+
+			  // driver.findElement(By.xpath(".//span[@class='glyphicon glyphicon-flag']"));
+			//}
+		//} 
+	    }	catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public  String getMaterial_Number() throws FileNotFoundException, IOException {
@@ -713,6 +1195,248 @@ public class MaterialPage {
 		ExcelUtil.excelWriteMaterialNum(numMaterial);;
 		return materialNum;
 	}
+	
+	
+	public void DiscardCreateGDA() throws InterruptedException {
+
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Button.click("Local Actions button click", btnLocalActions);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForObject(driver, btnDiscardCreate);
+		Textbox.click("Click on discard button in locl action", btnDiscardCreate);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForObject(driver, btnOK);
+		Button.click("Click On OK button", btnOK);
+		Sync.waitForSeconds(Constants.WAIT_5);
+	}
+	/*public void SaveAsDraft() throws InterruptedException {
+
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Button.click("Local Actions button click", btnLocalActions);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForObject(driver, btnDiscardCreate);
+		Textbox.click("Click on discard button in locl action", btnDiscardCreate);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForObject(driver, btnOK);
+		Button.click("Click On OK button", btnOK);
+		Sync.waitForSeconds(Constants.WAIT_5);
+	}
+	*/
+	public void RejectGDA() throws InterruptedException, AWTException {
+
+		System.out.println("Scrolling action");
+
+		Sync.waitForSeconds(Constants.WAIT_6);
+		System.out.println("Scrolling");
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		String test = driver.findElement(By.xpath(".//*[@id='mxui_widget_TextInput_3']/p")).getText();
+		driver.findElement(By.xpath(".//*[@id='mxui_widget_TextInput_3']/p")).click();
+		System.out.println(test);
+		
+				
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Robot robot = new Robot();  // Robot class throws AWT Exception	
+        Thread.sleep(4000); // Thread.sleep throws InterruptedException	
+        robot.keyPress(KeyEvent.VK_DOWN);
+        Thread.sleep(2000);
+        robot.keyRelease(KeyEvent.VK_DOWN);
+        
+        Actions action = new Actions(driver);
+		action.sendKeys(Keys.PAGE_DOWN).build().perform();
+		Thread.sleep(1000);
+	
+		action.sendKeys(Keys.PAGE_DOWN).build().perform();
+		Thread.sleep(1000);
+		
+		action.sendKeys(Keys.PAGE_DOWN).build().perform();
+		Thread.sleep(1000);
+		
+		action.sendKeys(Keys.PAGE_DOWN).build().perform();
+		Thread.sleep(1000);
+        
+		Sync.waitForObject(driver, btnCommentNew);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		System.out.println("checking for new button");
+		Sync.waitForSeconds(Constants.WAIT_5);
+		String text1=driver.findElement(By.xpath(".//*[@id='mxui_widget_NumberInput_3']/p")).getText();
+		System.out.println(text1);
+		String text2=driver.findElement(By.xpath("(.//*[@class='btn mx-button mx-name-newButton2 btn-default'])[1]")).getText();
+		System.out.println(text2);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
+		driver.findElement(By.xpath("(.//*[@class='btn mx-button mx-name-newButton2 btn-default'])[1]")).click();
+		
+		System.out.println("clicked new button");
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+
+		Textbox.enterValue("typing comment", textComment, "material data");
+		Textbox.click("Click on Save Button", btnSave);
+	
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
+		Button.click("Local Actions button click", btnLocalActions);
+		
+		Sync.waitForObject(driver, btnRejectGlobalRequest);
+		Textbox.click("Click on reject button in locl action", btnRejectGlobalRequest);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForObject(driver, btnOK);
+		Button.click("Click On OK button", btnOK);
+		Sync.waitForSeconds(Constants.WAIT_5);
+	}
+	public void RejectLocalRequest() {
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForObject(driver, driver.findElement(By.xpath("(.//*[@class='btn mx-button mx-name-newButton2 btn-default'])[2]")));
+
+		driver.findElement(By.xpath("(.//*[@class='btn mx-button mx-name-newButton2 btn-default'])[2]")).click();
+		System.out.println("clicked new button");
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+
+		Textbox.enterValue("typing comment", textComment, "material data");
+		Textbox.click("Click on Save Button", btnSave);
+		
+		Sync.waitForObject(driver, "Wait for Reject Local Request", driver.findElement(By.xpath(".//*[text()='Reject Local Request']")));
+		Sync.waitForElementToBeClickable(driver, driver.findElement(By.xpath(".//*[text()='Reject Local Request']")));
+		Button.click("Click  Reject Local Request", driver.findElement(By.xpath(".//*[text()='Reject Local Request']")));
+//		Button.click("Click Global submit Global Request", driver.findElement(By.xpath("(//span[@class='glyphicon glyphicon-save'])[2]")));
+		Sync.waitForSeconds(Constants.WAIT_2);
+		Sync.waitForSeconds(Constants.WAIT_5);
+	}
+
+	public boolean clickOkToHandlePopup()
+	{
+	Sync.waitForSeconds(Constants.WAIT_5);
+	WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+	return Button.jsclick("Click on Popup", popUp, driver);
+	//Sync.waitForSeconds(Constants.WAIT_1);
+   // Button.jsclick("Click ok on info Popup", btnOkay, driver);
+	} 
+	public boolean clickCreateRequestPopup() 
+	{
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
+		Sync.waitForSeconds(Constants.WAIT_5);
+		//WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+		Sync.waitForObject(driver, checkBoxPlant);
+		return Button.jsclick("Click on Edit Checkbox",checkBoxPlant , driver);
+	}
+	public boolean clickCreateRequestSelectAllPopup() 
+	{
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
+		Sync.waitForSeconds(Constants.WAIT_5);
+		//WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+		Sync.waitForObject(driver, checkBoxPlant);
+		return Button.jsclick("Click on Edit Checkbox",selectAllButton , driver);
+	}
+	public boolean clickCreateRequestButton() 
+	{
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_1);
+		//WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+		Sync.waitForObject(driver, createRequest);
+		return Button.jsclick("Click on Create Request Button",createRequest , driver);
+	}
+	public boolean SubmitLocalRequst() 
+	{
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_1);
+		//WebElement popUp = driver.findElement(By.xpath("//*[@class='close mx-dialog-close']"));
+		Sync.waitForObject(driver, createRequest);
+		return Button.jsclick("Click on Create Request Button",createRequest , driver);
+	}
+	public String getRequestId_CreateNew()
+			throws InterruptedException, FileNotFoundException, IOException {
+
+			Sync.waitForSeconds(Constants.WAIT_2);
+			WebDriverWait wait = new WebDriverWait(driver,80);
+
+			Sync.waitForObject(driver, "Wait of Dialog Box Success Message", msgRequestSuccess);
+			String reqId=driver.findElement(By.xpath(".//*[@id='mxui_widget_DialogMessage_0']/div[1]/div[2]/p")).getText();
+			String[] parts = reqId.split(" ");
+			String Id = parts[2];
+			System.out.println(Id);
+			String IdNum = Id.replaceAll("\\.", "");
+			System.out.println("RequestId is: " +Id);
+			// ExcelUtil.excelWrite(IdNum);
+			//ExcelUtil.setCellDataNew("TestPlan",4,11,Id);
+			ExcelUtil.setCellData_New("TestPlan", "RequestId", Id);
+			System.out.println("RequestId is: " +IdNum);
+			Sync.waitForSeconds(Constants.WAIT_3);
+			Sync.waitForElementToBeClickable(driver, btnMsgReqIdOkdraft);
+			// Button.click("Click Ok Button", btnMsgReqIdOkdraft);
+			return Id;
+	} 
+	public boolean clickGlobalDataButton() throws InterruptedException 
+	{
+		 boolean isButtonClicked=false;
+		
+		WebElement el = driver.findElement(By.cssSelector(".mx-name-tabPageGlobal"));
+	    ((JavascriptExecutor)driver).executeScript("arguments[0].click()", el);
+		/*if(Button.verifyObject(btnGlobalData)){
+			Sync.waitForObject(driver ,"Global Data", btnGlobalData);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Global Data", btnGlobalData);
+		}else{
+			return Button.click("Global Data", btnGlobalData);
+		}*/
+	    return isButtonClicked;
+	}
+	public boolean clickToConfirm() throws InterruptedException 
+	{
+
+		if(Button.verifyObject(btnToConfirm)){
+			Sync.waitForObject(driver ,"Click Button To Confirm", btnToConfirm);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To Confirm", btnToConfirm);
+		}else{
+			return Button.click("Click Button To Confirm", btnToConfirm);
+		}
+	}
+	
+	public boolean clickConfirmExtension() throws InterruptedException 
+	{
+
+		if(Button.verifyObject(btnConfirmExtension)){
+			Sync.waitForObject(driver ,"Click Button To Confirm", btnConfirmExtension);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To Confirm", btnConfirmExtension);
+		}else{
+			return Button.click("Click Button To Confirm", btnConfirmExtension);
+		}
+	}	
+	
+	public boolean clickOk() throws InterruptedException 
+	{
+
+		if(Button.verifyObject(btnok)){
+			Sync.waitForObject(driver ,"Click Button To ok", btnok);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To ok", btnok);
+		}else{
+			return Button.click("Click Button To ok", btnok);
+		}
+
+	
+
+	}
+	public boolean clickflagDeletion() throws InterruptedException 
+	{
+		
+		if(Button.verifyObject(btnflagForDeletion)){
+			Sync.waitForObject(driver ,"Click Button To Delete", btnflagForDeletion);
+			Sync.waitForSeconds(Constants.WAIT_5);		
+			return Button.click("Click Button To Delete", btnflagForDeletion);
+		}else{
+			return Button.click("Click Button To Delete", btnflagForDeletion);
+		}
+	}
+
+//	}
 
 	public String getRequestId_Create()
 			throws InterruptedException, FileNotFoundException, IOException {
@@ -793,18 +1517,27 @@ public class MaterialPage {
 		/*Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForSeconds(Constants.WAIT_5);
 
+		//Button.click("Click Search button", btnReqIdEnter);
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Sync.waitForSeconds(Constants.WAIT_5);*/
 		Sync.waitForSeconds(Constants.WAIT_5);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(
+	    		  By.xpath("//*[text()='Global ID']/../../td[4]/div/input")));
+		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		//Sync.waitForSeconds(Constants.WAIT_5);
 
 		Sync.waitForObject(driver, txtboxGlobalIdEnter);
 		Sync.waitForSeconds(Constants.WAIT_5);
+		Sync.waitForSeconds(Constants.WAIT_5);
+		
 
-		Textbox.clear("Clear TextBox Value", txtboxGlobalIdEnter);
+		//Textbox.clear("Clear TextBox Value", txtboxGlobalIdEnter);
 		Textbox.enterValue("Enter TextBox Value", txtboxGlobalIdEnter, strValue);
 		Sync.waitForSeconds(Constants.WAIT_5);
 		Button.click("Click Search button", btnReqIdEnter);
-		Sync.waitForSeconds(Constants.WAIT_5);	}
-
-
+		Sync.waitForSeconds(Constants.WAIT_5); 
+		} 
+	
 }
