@@ -195,9 +195,9 @@ public class TestData {
 		return TestCase.getRow_New(testDataFile, sheetName);
 	}
 
-	public static String[] getData(String fileName, String sheet, String testCaseId) throws IOException{
+	/*public static String[] getData(String fileName, String sheet, String testCaseId) throws IOException{
 		return ExcelMethods.getData(fileName, sheet, testCaseId);
-	}
+	}*/
 
 
 	public String movedata(String testCaseName){
